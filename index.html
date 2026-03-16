@@ -381,7 +381,7 @@ body:formData
 
 let data=await res.json()
 
-let fileUrl=data.secure_url
+let fileUrl=data.secure_url || ""
 
 let order={
 
@@ -439,10 +439,10 @@ orders.forEach((o,i)=>{
 
 let preview=""
 
-if(o.file.includes(".mp4") || o.file.includes(".webm") || o.file.includes(".mov")){
+if(o.file && o.file.includes("video")){
 preview=`<video src="${o.file}" controls></video>`
 }else{
-preview=`<img src="${o.file}">`
+preview=`<img src="${o.file}" style="max-width:200px;border-radius:10px">`
 }
 
 html+=`
