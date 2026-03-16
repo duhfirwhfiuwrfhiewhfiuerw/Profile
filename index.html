@@ -150,13 +150,12 @@ margin-top:20px;
 }
 
 .gallery img{
-width:100%;
+width:180px;
+height:180px;
+object-fit:cover;
+margin:10px;
 border-radius:15px;
-transition:0.25s;
-cursor:pointer;
-box-shadow:0 8px 18px rgba(0,0,0,0.5);
 }
-
 .gallery img:hover{
 transform:scale(1.08);
 box-shadow:0 12px 30px rgba(255,122,200,0.6);
@@ -207,11 +206,12 @@ box-shadow:0 12px 30px rgba(255,122,200,0.6);
 <h2>프로필 모음집</h2>
 
 <div class="gallery">
-<img src="profile1.gif">
-<img src="profile2.gif">
-<img src="profile3.gif">
-</div>
 
+<img src="https://i.imgur.com/noDm1CK.gif">
+<img src="https://i.imgur.com/n8yic2W.gif">
+<img src="https://i.imgur.com/lfcnC8z.gif">
+
+</div>
 <button class="btn" onclick="page('main')">
 뒤로가기
 </button>
