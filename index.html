@@ -22,16 +22,12 @@ color:white;
 text-align:center;
 }
 
-/* 제목 */
-
 .title{
 font-size:42px;
 margin-top:40px;
 color:#ff7ac8;
 text-shadow:0 0 15px rgba(255,122,200,0.8);
 }
-
-/* 버튼 */
 
 .btn{
 display:block;
@@ -53,8 +49,6 @@ transform:translateY(-3px);
 box-shadow:0 12px 25px rgba(255,122,200,0.7);
 }
 
-/* 페이지 */
-
 .page{
 display:none;
 padding:30px;
@@ -64,8 +58,6 @@ padding:30px;
 display:block;
 }
 
-/* 카드 */
-
 .card{
 background:#1e1e35;
 padding:20px;
@@ -74,8 +66,6 @@ margin:15px auto;
 max-width:500px;
 box-shadow:0 10px 25px rgba(0,0,0,0.4);
 }
-
-/* 입력 */
 
 input,select,textarea{
 width:80%;
@@ -89,8 +79,6 @@ font-size:15px;
 textarea{
 height:90px;
 }
-
-/* 색상 */
 
 .colors{
 display:flex;
@@ -107,15 +95,11 @@ cursor:pointer;
 border:2px solid white;
 }
 
-/* 갤러리 */
-
 .gallery img{
 width:150px;
 margin:10px;
 border-radius:15px;
 }
-
-/* 관리자 주문 */
 
 .order{
 background:#222242;
@@ -125,19 +109,11 @@ margin:15px auto;
 max-width:500px;
 }
 
-.preview img{
+.preview img,video{
 max-width:200px;
 margin-top:10px;
 border-radius:10px;
 }
-
-.preview video{
-max-width:200px;
-margin-top:10px;
-border-radius:10px;
-}
-
-/* 로딩 */
 
 #loading{
 display:none;
@@ -197,8 +173,6 @@ margin-bottom:20px;
 
 </div>
 
-<!-- 신청 -->
-
 <div id="make" class="page">
 
 <div class="card">
@@ -257,10 +231,7 @@ margin-bottom:20px;
 </button>
 
 </div>
-
 </div>
-
-<!-- 가격 -->
 
 <div id="price" class="page">
 
@@ -276,10 +247,6 @@ margin-bottom:20px;
 
 <br><br>
 
-입금 방법
-
-<br>
-
 창고 입금  
 <br>
 미네랄 선물 (500x6일)  
@@ -288,25 +255,12 @@ margin-bottom:20px;
 
 </p>
 
-<h2>프로필 모음집</h2>
-
-<div class="gallery">
-
-<img src="profile1.gif">
-<img src="profile2.gif">
-<img src="profile3.gif">
-
-</div>
-
 <button class="btn" onclick="page('main')">
 뒤로가기
 </button>
 
 </div>
-
 </div>
-
-<!-- 관리자 -->
 
 <div id="admin" class="page">
 
@@ -322,7 +276,23 @@ margin-bottom:20px;
 
 </div>
 
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+
 <script>
+
+const firebaseConfig = {
+ apiKey: "AIzaSyDmu0IcPOpT3t4lCTm4lJSOfputYD1Qrl4",
+ authDomain: "profile-order.firebaseapp.com",
+ projectId: "profile-order",
+ storageBucket: "profile-order.firebasestorage.app",
+ messagingSenderId: "809148281864",
+ appId: "1:809148281864:web:5bcbe9ffb4fdd544184dbd"
+};
+
+firebase.initializeApp(firebaseConfig);
+
+const db = firebase.firestore();
 
 let color="없음"
 
@@ -338,7 +308,6 @@ if(p==="admin") loadOrders()
 function toggleColor(){
 
 let b=document.getElementById("colorBox")
-
 b.style.display=b.style.display==="none"?"block":"none"
 
 }
@@ -355,14 +324,7 @@ async function submitOrder(){
 let file=document.getElementById("file").files[0]
 
 if(!file){
-alert("파일을 선택해주세요")
-return
-}
-
-/* 용량 제한 */
-
-if(file.size > 50*1024*1024){
-alert("파일은 50MB 이하만 가능합니다")
+alert("파일 선택")
 return
 }
 
@@ -372,8 +334,6 @@ let formData=new FormData()
 formData.append("file",file)
 formData.append("upload_preset","unsigned_upload")
 
-try{
-
 let res=await fetch("https://api.cloudinary.com/v1_1/dni642dal/upload",{
 method:"POST",
 body:formData
@@ -381,9 +341,9 @@ body:formData
 
 let data=await res.json()
 
-let fileUrl=data.secure_url || ""
+let fileUrl=data.secure_url
 
-let order={
+await db.collection("orders").add({
 
 nick:document.getElementById("nick").value,
 color:color,
@@ -393,27 +353,13 @@ request:document.getElementById("request").value,
 file:fileUrl,
 time:new Date().toLocaleString()
 
-}
-
-let orders=JSON.parse(localStorage.getItem("orders")||"[]")
-
-orders.push(order)
-
-localStorage.setItem("orders",JSON.stringify(orders))
+})
 
 document.getElementById("loading").style.display="none"
 
 alert("신청 완료!")
 
 page("main")
-
-}catch(e){
-
-document.getElementById("loading").style.display="none"
-
-alert("업로드 실패 😢")
-
-}
 
 }
 
@@ -427,23 +373,17 @@ else alert("비밀번호 틀림")
 
 }
 
-function loadOrders(){
+async function loadOrders(){
 
-let orders=JSON.parse(localStorage.getItem("orders")||"[]")
-
-document.getElementById("orderCount").innerText="현재 주문 : "+orders.length+"개"
+let snapshot=await db.collection("orders").get()
 
 let html=""
 
-orders.forEach((o,i)=>{
+document.getElementById("orderCount").innerText="현재 주문 : "+snapshot.size+"개"
 
-let preview=""
+snapshot.forEach(doc=>{
 
-if(o.file && o.file.includes("video")){
-preview=`<video src="${o.file}" controls></video>`
-}else{
-preview=`<img src="${o.file}" style="max-width:200px;border-radius:10px">`
-}
+let o=doc.data()
 
 html+=`
 
@@ -456,10 +396,10 @@ html+=`
 요청 : ${o.request}<br>
 
 <div class="preview">
-${preview}
+<img src="${o.file}">
 </div>
 
-<button class="btn" onclick="completeOrder(${i})">
+<button class="btn" onclick="completeOrder('${doc.id}')">
 완료
 </button>
 
@@ -473,13 +413,9 @@ document.getElementById("orders").innerHTML=html
 
 }
 
-function completeOrder(i){
+async function completeOrder(id){
 
-let orders=JSON.parse(localStorage.getItem("orders")||"[]")
-
-orders.splice(i,1)
-
-localStorage.setItem("orders",JSON.stringify(orders))
+await db.collection("orders").doc(id).delete()
 
 loadOrders()
 
