@@ -231,7 +231,6 @@ margin-top:10px;
 
 <div id="colorBox" style="display:none">
 
-<div class="colors">
 
 <div class="colors">
 
@@ -450,10 +449,11 @@ html+=`
 
 <div class="preview">
 
-<img src="${o.file}">
+${o.file?.includes("video") 
+? `<video src="${o.file}" controls></video>` 
+: `<img src="${o.file}">`}
 
 </div>
-
 <button class="btn" onclick="completeOrder(${i})">
 완료
 </button>
