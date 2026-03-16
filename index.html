@@ -69,7 +69,24 @@ transform:translateY(-4px) scale(1.05);
 box-shadow:
 0 20px 40px rgba(255,122,200,0.8);
 }
+.backBtn{
+position:absolute;
+top:20px;
+left:20px;
 
+padding:8px 16px;
+font-size:14px;
+
+border-radius:20px;
+border:none;
+
+background:#ff7ac8;
+color:white;
+
+cursor:pointer;
+
+box-shadow:0 0 15px #ff7ac8;
+}
 .page{
 display:none;
 padding:30px;
@@ -266,6 +283,14 @@ text-shadow:
 
 letter-spacing:3px;
 }
+ .color.selected{
+transform:scale(1.2);
+box-shadow:
+0 0 10px white,
+0 0 20px currentColor,
+0 0 35px currentColor;
+border:2px solid white;
+}
 </style>
 </head>
 
@@ -340,15 +365,15 @@ letter-spacing:3px;
 
 <div class="colors">
 
-<div class="color" style="background:#ff9aa2" onclick="setColor('파스텔 빨강')"></div>
-<div class="color" style="background:#ffb347" onclick="setColor('파스텔 주황')"></div>
-<div class="color" style="background:#fff4a3" onclick="setColor('파스텔 노랑')"></div>
-<div class="color" style="background:#b5ead7" onclick="setColor('파스텔 초록')"></div>
-<div class="color" style="background:#a0e7e5" onclick="setColor('파스텔 하늘')"></div>
-<div class="color" style="background:#a0c4ff" onclick="setColor('파스텔 파랑')"></div>
-<div class="color" style="background:#cdb4db" onclick="setColor('파스텔 보라')"></div>
-<div class="color" style="background:#ffc6ff" onclick="setColor('파스텔 분홍')"></div>
-<div class="color" style="background:#000" onclick="setColor('검정')"></div>
+<div class="color" style="background:#ff9aa2" onclick="setColor('파스텔 빨강',this)"></div>
+<div class="color" style="background:#ffb347" onclick="setColor('파스텔 주황',this)"></div>
+<div class="color" style="background:#fff4a3" onclick="setColor('파스텔 노랑',this)"></div>
+<div class="color" style="background:#b5ead7" onclick="setColor('파스텔 초록',this)"></div>
+<div class="color" style="background:#a0e7e5" onclick="setColor('파스텔 하늘',this)"></div>
+<div class="color" style="background:#a0c4ff" onclick="setColor('파스텔 파랑',this)"></div>
+<div class="color" style="background:#cdb4db" onclick="setColor('파스텔 보라',this)"></div>
+<div class="color" style="background:#ffc6ff" onclick="setColor('파스텔 분홍',this)"></div>
+<div class="color" style="background:#000" onclick="setColor('검정',this)"></div>
 
 </div>
 </div>
@@ -377,8 +402,8 @@ letter-spacing:3px;
 신청하기
 </button>
 
-<button class="btn" onclick="page('main')">
-뒤로가기
+<button class="backBtn" onclick="page('main')">
+←
 </button>
 
 </div>
@@ -434,10 +459,16 @@ b.style.display=b.style.display==="none"?"block":"none"
 
 }
 
-function setColor(c){
+function setColor(c,el){
 
 color=c
 document.getElementById("colorText").innerText=c
+
+document.querySelectorAll(".color").forEach(e=>{
+e.classList.remove("selected")
+})
+
+el.classList.add("selected")
 
 }
 
@@ -452,7 +483,7 @@ return
 }
 
 if(!file){
-alert("파일 선택해주세요")
+alert("⚠️ 프로필 제작할 파일을 선택해야 합니다!")
 return
 }
 
