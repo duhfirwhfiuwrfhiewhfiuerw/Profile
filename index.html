@@ -12,31 +12,9 @@
 
 *{
 box-sizing:border-box;
-}
-
-body,button,input,select,textarea{
 font-family:'Fredoka',sans-serif;
 }
 
-body{
-margin:0;
-background:linear-gradient(180deg,#0f0f1a,#1b1b2f);
-color:white;
-text-align:center;
-}
-
-</style>
-*{
-box-sizing:border-box;
-}
-
-body{
-margin:0;
-background:linear-gradient(180deg,#0f0f1a,#1b1b2f);
-color:white;
-text-align:center;
-font-family:'Fredoka',sans-serif;
-}
 body{
 margin:0;
 background:linear-gradient(180deg,#0f0f1a,#1b1b2f);
@@ -47,14 +25,10 @@ text-align:center;
 /* 제목 */
 
 .title{
-
 font-size:42px;
 margin-top:40px;
-
 color:#ff7ac8;
-
 text-shadow:0 0 10px rgba(255,122,200,0.5);
-
 }
 
 /* 버튼 */
@@ -62,35 +36,21 @@ text-shadow:0 0 10px rgba(255,122,200,0.5);
 .btn{
 display:block;
 width:260px;
-font-family:'Fredoka',sans-serif;
 margin:15px auto;
-
 padding:16px;
-
 border-radius:40px;
-
 background:#ff7ac8;
-
 color:white;
-
 font-size:18px;
-
 border:none;
-
 cursor:pointer;
-
 transition:0.25s;
-
 box-shadow:0 8px 20px rgba(255,122,200,0.4);
-
 }
 
 .btn:hover{
-
 transform:translateY(-3px);
-
 box-shadow:0 12px 25px rgba(255,122,200,0.6);
-
 }
 
 /* 페이지 */
@@ -107,37 +67,23 @@ display:block;
 /* 카드 */
 
 .card{
-
 background:#1e1e35;
-
 padding:20px;
-
 border-radius:20px;
-
 margin:15px auto;
-
 max-width:500px;
-
 box-shadow:0 10px 25px rgba(0,0,0,0.4);
-
 }
 
 /* 입력 */
 
 input,select,textarea{
-
 width:80%;
-
 padding:12px;
-
 margin:8px;
-
 border-radius:15px;
-
 border:none;
-
 font-size:15px;
-
 }
 
 textarea{
@@ -147,13 +93,9 @@ height:90px;
 /* 색상 */
 
 .colors{
-
 display:flex;
-
 justify-content:center;
-
 flex-wrap:wrap;
-
 }
 
 .color{
@@ -163,53 +105,35 @@ margin:6px;
 border-radius:10px;
 cursor:pointer;
 border:2px solid white;
-box-shadow:0 0 5px rgba(0,0,0,0.3);
 }
 
 /* 갤러리 */
 
 .gallery img{
-
 width:150px;
-
 margin:10px;
-
 border-radius:15px;
-
 }
 
 /* 관리자 주문 */
 
 .order{
-
 background:#222242;
-
 padding:15px;
-
 border-radius:15px;
-
 margin:15px auto;
-
 max-width:500px;
-
 }
 
 .preview img{
-
 max-width:200px;
-
 margin-top:10px;
-
 border-radius:10px;
-
 }
 
 video{
-
 max-width:200px;
-
 margin-top:10px;
-
 }
 
 </style>
@@ -251,25 +175,16 @@ margin-top:10px;
 
 <div id="colorBox" style="display:none">
 
-
 <div class="colors">
 
 <div class="color" style="background:#ff3b3b" onclick="setColor('빨강')"></div>
-
 <div class="color" style="background:#ff8c1a" onclick="setColor('주황')"></div>
-
 <div class="color" style="background:#ffd500" onclick="setColor('노랑')"></div>
-
 <div class="color" style="background:#32d74b" onclick="setColor('초록')"></div>
-
 <div class="color" style="background:#3b82ff" onclick="setColor('파랑')"></div>
-
 <div class="color" style="background:#004cff" onclick="setColor('남색')"></div>
-
 <div class="color" style="background:#8b5cf6" onclick="setColor('보라')"></div>
-
 <div class="color" style="background:#ff7ac8" onclick="setColor('핑크')"></div>
-
 <div class="color" style="background:black" onclick="setColor('검정')"></div>
 
 </div>
@@ -282,19 +197,15 @@ margin-top:10px;
 <input type="file" id="file">
 
 <select id="font">
-
 <option>둥글게</option>
 <option>날렵하게</option>
 <option>얇게</option>
 <option>두껍게</option>
-
 </select>
 
 <select id="type">
-
 <option>숲 프로필</option>
 <option>와고용 프로필</option>
-
 </select>
 
 <textarea id="request" placeholder="요청사항"></textarea>
@@ -474,6 +385,7 @@ ${o.file?.includes("video")
 : `<img src="${o.file}">`}
 
 </div>
+
 <button class="btn" onclick="completeOrder(${i})">
 완료
 </button>
