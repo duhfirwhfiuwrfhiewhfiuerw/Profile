@@ -18,14 +18,13 @@ color:white;
 text-align:center;
 }
 
-/* 네온 글로우 */
+/* 핑크 네온 */
 
 .neon{
-color:#00ffff;
+color:#ff7ac8;
 text-shadow:
-0 0 5px #00ffff,
-0 0 10px #00ffff,
-0 0 20px #00ffff;
+0 0 4px #ff7ac8,
+0 0 8px #ff7ac8;
 }
 
 /* 버튼 */
@@ -39,9 +38,9 @@ padding:15px;
 
 border-radius:30px;
 
-background:linear-gradient(145deg,#0ff,#0088ff);
+background:linear-gradient(145deg,#ff7ac8,#ff4db8);
 
-color:black;
+color:white;
 
 font-size:18px;
 
@@ -50,8 +49,8 @@ border:none;
 cursor:pointer;
 
 box-shadow:
-0 0 10px #00ffff,
-0 0 30px #0088ff;
+0 0 8px #ff7ac8,
+0 0 15px #ff4db8;
 
 transition:0.3s;
 
@@ -60,9 +59,6 @@ transition:0.3s;
 .btn:hover{
 
 transform:scale(1.05);
-box-shadow:
-0 0 20px #00ffff,
-0 0 40px #0088ff;
 
 }
 
@@ -120,7 +116,7 @@ width:170px;
 border-radius:15px;
 margin:10px;
 
-box-shadow:0 0 20px cyan;
+box-shadow:0 0 10px #ff7ac8;
 
 }
 
@@ -128,7 +124,7 @@ box-shadow:0 0 20px cyan;
 
 .order{
 
-border:1px solid cyan;
+border:1px solid #ff7ac8;
 
 margin:15px;
 padding:15px;
@@ -151,17 +147,6 @@ max-width:200px;
 margin:10px;
 
 }
-
-.status{
-
-padding:6px 12px;
-border-radius:20px;
-
-}
-
-.wait{background:orange}
-.work{background:#00aaff}
-.done{background:#00cc66}
 
 </style>
 </head>
@@ -186,16 +171,13 @@ border-radius:20px;
 
 </div>
 
-
 <!-- 신청 -->
 
 <div id="make" class="page">
 
 <h2>프로필 신청</h2>
 
-닉네임
-
-<br>
+닉네임<br>
 
 <input id="nick">
 
@@ -225,9 +207,7 @@ border-radius:20px;
 
 <br>
 
-영상 / 이미지
-
-<br>
+영상 / 이미지<br>
 
 <input type="file" id="file">
 
@@ -279,7 +259,6 @@ border-radius:20px;
 
 </div>
 
-
 <!-- 가격 -->
 
 <div id="price" class="page">
@@ -288,7 +267,7 @@ border-radius:20px;
 
 <p>
 
-선불 : 미네랄 3000만  
+선불 : 미네랄 3000만<br>
 후불 : 미네랄 4000만
 
 <br><br>
@@ -297,8 +276,8 @@ border-radius:20px;
 
 <br>
 
-창고 입금  
-미네랄 선물 (500x6일)  
+창고 입금<br>
+미네랄 선물 (500x6일)<br>
 와토 전달
 
 </p>
@@ -319,12 +298,13 @@ border-radius:20px;
 
 </div>
 
-
 <!-- 관리자 -->
 
 <div id="admin" class="page">
 
 <h2 class="neon">주문 관리</h2>
+
+<p id="orderCount"></p>
 
 <div id="orders"></div>
 
@@ -403,7 +383,7 @@ function adminLogin(){
 
 let pw=prompt("관리자 비밀번호")
 
-if(pw==="1234"){
+if(pw==="0915"){
 
 page("admin")
 
@@ -418,6 +398,8 @@ alert("비밀번호 틀림")
 function loadOrders(){
 
 let orders=JSON.parse(localStorage.getItem("orders")||"[]")
+
+document.getElementById("orderCount").innerText="현재 주문 : "+orders.length+"개"
 
 let html=""
 
@@ -442,9 +424,7 @@ ${o.file?.includes("video")?
 
 </div>
 
-상태 : ${o.status}
-
-<br><br>
+<br>
 
 <button class="btn" onclick="changeStatus(${i},'작업중')">
 작업중
@@ -459,6 +439,11 @@ ${o.file?.includes("video")?
 `
 
 })
+
+document.getElementById("orders").innerHTML=html
+
+}
+
 function completeOrder(i){
 
 let orders=JSON.parse(localStorage.getItem("orders")||"[]")
@@ -468,11 +453,6 @@ orders.splice(i,1)
 localStorage.setItem("orders",JSON.stringify(orders))
 
 loadOrders()
-
-alert("주문이 완료 처리되었습니다!")
-
-}
-document.getElementById("orders").innerHTML=html
 
 }
 
