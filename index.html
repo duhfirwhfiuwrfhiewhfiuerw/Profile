@@ -17,9 +17,10 @@ font-family:'Jua',sans-serif;
 
 body{
 margin:0;
-background:linear-gradient(180deg,#0f0f1a,#1b1b2f);
+background:radial-gradient(circle at top,#1f1f3b,#0b0b17);
 color:white;
 text-align:center;
+min-height:100vh;
 }
 
 .title{
@@ -35,18 +36,18 @@ width:260px;
 margin:15px auto;
 padding:16px;
 border-radius:40px;
-background:#ff7ac8;
+background:linear-gradient(45deg,#ff7ac8,#ff3b8d);
 color:white;
 font-size:18px;
 border:none;
 cursor:pointer;
 transition:0.25s;
-box-shadow:0 8px 20px rgba(255,122,200,0.5);
+box-shadow:0 8px 25px rgba(255,122,200,0.6);
 }
 
 .btn:hover{
-transform:translateY(-3px);
-box-shadow:0 12px 25px rgba(255,122,200,0.7);
+transform:translateY(-4px) scale(1.03);
+box-shadow:0 15px 35px rgba(255,122,200,0.8);
 }
 
 .page{
@@ -59,12 +60,14 @@ display:block;
 }
 
 .card{
-background:#1e1e35;
-padding:20px;
-border-radius:20px;
+background:rgba(30,30,53,0.85);
+backdrop-filter:blur(10px);
+padding:25px;
+border-radius:25px;
 margin:15px auto;
-max-width:500px;
-box-shadow:0 10px 25px rgba(0,0,0,0.4);
+max-width:520px;
+box-shadow:0 15px 35px rgba(0,0,0,0.6);
+border:1px solid rgba(255,255,255,0.08);
 }
 
 input,select,textarea{
@@ -138,10 +141,25 @@ margin-bottom:20px;
 0%{transform:rotate(0deg);}
 100%{transform:rotate(360deg);}
 }
+
+ .gallery{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+gap:15px;
+margin-top:20px;
+}
+
 .gallery img{
-width:150px;
-margin:10px;
+width:100%;
 border-radius:15px;
+transition:0.25s;
+cursor:pointer;
+box-shadow:0 8px 18px rgba(0,0,0,0.5);
+}
+
+.gallery img:hover{
+transform:scale(1.08);
+box-shadow:0 12px 30px rgba(255,122,200,0.6);
 }
 </style>
 </head>
