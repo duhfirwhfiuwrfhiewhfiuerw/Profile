@@ -344,6 +344,8 @@ return
 
 document.getElementById("loading").style.display="flex"
 
+try{
+
 let formData=new FormData()
 formData.append("file",file)
 formData.append("upload_preset","unsigned_upload")
@@ -355,10 +357,13 @@ body:formData
 
 let data=await res.json()
 
+if(!data.secure_url){
+throw new Error("업로드 실패")
+}
+
 let fileUrl=data.secure_url
 
 await db.collection("orders").add({
-
 nick:nick,
 color:color,
 font:document.getElementById("font").value,
@@ -366,14 +371,19 @@ type:document.getElementById("type").value,
 request:document.getElementById("request").value,
 file:fileUrl,
 time:new Date().toLocaleString()
-
 })
 
-document.getElementById("loading").style.display="none"
-
 alert("신청 완료!")
-
 page("main")
+
+}catch(err){
+
+console.error(err)
+alert("업로드 실패했습니다. 다시 시도해주세요.")
+
+}
+
+document.getElementById("loading").style.display="none"
 
 }
 
