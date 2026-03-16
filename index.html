@@ -6,25 +6,33 @@
 
 <title>프로필 제작</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600&display=swap" rel="stylesheet">
 
 <style>
 
+*{
+box-sizing:border-box;
+font-family:'Nunito',sans-serif;
+}
+
 body{
 margin:0;
-background:#050510;
-font-family:'Jua',sans-serif;
+background:linear-gradient(180deg,#0f0f1a,#1b1b2f);
 color:white;
 text-align:center;
 }
 
-/* 핑크 네온 */
+/* 제목 */
 
-.neon{
+.title{
+
+font-size:42px;
+margin-top:40px;
+
 color:#ff7ac8;
-text-shadow:
-0 0 4px #ff7ac8,
-0 0 8px #ff7ac8;
+
+text-shadow:0 0 10px rgba(255,122,200,0.5);
+
 }
 
 /* 버튼 */
@@ -32,13 +40,16 @@ text-shadow:
 .btn{
 
 display:block;
+
 width:260px;
+
 margin:15px auto;
-padding:15px;
 
-border-radius:30px;
+padding:16px;
 
-background:linear-gradient(145deg,#ff7ac8,#ff4db8);
+border-radius:40px;
+
+background:#ff7ac8;
 
 color:white;
 
@@ -48,17 +59,17 @@ border:none;
 
 cursor:pointer;
 
-box-shadow:
-0 0 8px #ff7ac8,
-0 0 15px #ff4db8;
+transition:0.25s;
 
-transition:0.3s;
+box-shadow:0 8px 20px rgba(255,122,200,0.4);
 
 }
 
 .btn:hover{
 
-transform:scale(1.05);
+transform:translateY(-3px);
+
+box-shadow:0 12px 25px rgba(255,122,200,0.6);
 
 }
 
@@ -73,22 +84,21 @@ padding:30px;
 display:block;
 }
 
-/* 색상 */
+/* 카드 */
 
-.colors{
-display:flex;
-justify-content:center;
-flex-wrap:wrap;
-}
+.card{
 
-.color{
+background:#1e1e35;
 
-width:45px;
-height:45px;
-margin:6px;
-border-radius:10px;
-cursor:pointer;
-border:2px solid white;
+padding:20px;
+
+border-radius:20px;
+
+margin:15px auto;
+
+max-width:500px;
+
+box-shadow:0 10px 25px rgba(0,0,0,0.4);
 
 }
 
@@ -96,47 +106,86 @@ border:2px solid white;
 
 input,select,textarea{
 
-margin:10px;
-padding:10px;
-border-radius:20px;
+width:80%;
+
+padding:12px;
+
+margin:8px;
+
+border-radius:15px;
+
 border:none;
+
+font-size:15px;
 
 }
 
 textarea{
-width:80%;
-height:100px;
+height:90px;
+}
+
+/* 색상 */
+
+.colors{
+
+display:flex;
+
+justify-content:center;
+
+flex-wrap:wrap;
+
+}
+
+.color{
+
+width:40px;
+
+height:40px;
+
+margin:6px;
+
+border-radius:10px;
+
+cursor:pointer;
+
+border:2px solid white;
+
 }
 
 /* 갤러리 */
 
 .gallery img{
 
-width:170px;
-border-radius:15px;
+width:150px;
+
 margin:10px;
 
-box-shadow:0 0 10px #ff7ac8;
+border-radius:15px;
 
 }
 
-/* 주문 */
+/* 관리자 주문 */
 
 .order{
 
-border:1px solid #ff7ac8;
+background:#222242;
 
-margin:15px;
 padding:15px;
 
 border-radius:15px;
+
+margin:15px auto;
+
+max-width:500px;
 
 }
 
 .preview img{
 
 max-width:200px;
-margin:10px;
+
+margin-top:10px;
+
 border-radius:10px;
 
 }
@@ -144,7 +193,8 @@ border-radius:10px;
 video{
 
 max-width:200px;
-margin:10px;
+
+margin-top:10px;
 
 }
 
@@ -155,14 +205,14 @@ margin:10px;
 
 <div id="main" class="page active">
 
-<h1 class="neon">프로필 제작</h1>
+<h1 class="title">프로필 제작</h1>
 
 <button class="btn" onclick="page('make')">
 프로필 만들러가기
 </button>
 
 <button class="btn" onclick="page('price')">
-가격 및 프로필 모음집
+가격 및 모음집
 </button>
 
 <button class="btn" onclick="adminLogin()">
@@ -175,13 +225,11 @@ margin:10px;
 
 <div id="make" class="page">
 
+<div class="card">
+
 <h2>프로필 신청</h2>
 
-닉네임<br>
-
-<input id="nick">
-
-<br>
+<input id="nick" placeholder="닉네임">
 
 <button class="btn" onclick="toggleColor()">
 프로필 색상 선택
@@ -197,7 +245,6 @@ margin:10px;
 <div class="color" style="background:green" onclick="setColor('초록')"></div>
 <div class="color" style="background:blue" onclick="setColor('파랑')"></div>
 <div class="color" style="background:purple" onclick="setColor('보라')"></div>
-<div class="color" style="background:pink" onclick="setColor('핑크')"></div>
 
 </div>
 
@@ -207,15 +254,7 @@ margin:10px;
 
 <br>
 
-영상 / 이미지<br>
-
 <input type="file" id="file">
-
-<br>
-
-글씨체
-
-<br>
 
 <select id="font">
 
@@ -226,12 +265,6 @@ margin:10px;
 
 </select>
 
-<br>
-
-프로필 종류
-
-<br>
-
 <select id="type">
 
 <option>숲 프로필</option>
@@ -239,15 +272,7 @@ margin:10px;
 
 </select>
 
-<br>
-
-요청사항
-
-<br>
-
-<textarea id="request"></textarea>
-
-<br>
+<textarea id="request" placeholder="요청사항"></textarea>
 
 <button class="btn" onclick="submitOrder()">
 신청하기
@@ -259,15 +284,20 @@ margin:10px;
 
 </div>
 
+</div>
+
 <!-- 가격 -->
 
 <div id="price" class="page">
 
-<h2 class="neon">가격 안내</h2>
+<div class="card">
+
+<h2>가격 안내</h2>
 
 <p>
 
-선불 : 미네랄 3000만<br>
+선불 : 미네랄 3000만  
+<br>
 후불 : 미네랄 4000만
 
 <br><br>
@@ -276,13 +306,15 @@ margin:10px;
 
 <br>
 
-창고 입금<br>
-미네랄 선물 (500x6일)<br>
+창고 입금  
+<br>
+미네랄 선물 (500x6일)  
+<br>
 와토 전달
 
 </p>
 
-<h2 class="neon">프로필 모음집</h2>
+<h2>프로필 모음집</h2>
 
 <div class="gallery">
 
@@ -298,11 +330,13 @@ margin:10px;
 
 </div>
 
+</div>
+
 <!-- 관리자 -->
 
 <div id="admin" class="page">
 
-<h2 class="neon">주문 관리</h2>
+<h2 class="title">주문 관리</h2>
 
 <p id="orderCount"></p>
 
@@ -358,7 +392,6 @@ font:document.getElementById("font").value,
 type:document.getElementById("type").value,
 request:document.getElementById("request").value,
 file:reader.result,
-status:"대기",
 time:new Date().toLocaleString()
 
 }
@@ -383,15 +416,9 @@ function adminLogin(){
 
 let pw=prompt("관리자 비밀번호")
 
-if(pw==="0915"){
+if(pw==="0915") page("admin")
 
-page("admin")
-
-}else{
-
-alert("비밀번호 틀림")
-
-}
+else alert("비밀번호 틀림")
 
 }
 
@@ -414,21 +441,12 @@ html+=`
 글씨체 : ${o.font}<br>
 프로필 : ${o.type}<br>
 요청 : ${o.request}<br>
-시간 : ${o.time}
 
 <div class="preview">
 
-${o.file?.includes("video")?
-`<video src="${o.file}" controls></video>`
-:`<img src="${o.file}">`}
+<img src="${o.file}">
 
 </div>
-
-<br>
-
-<button class="btn" onclick="changeStatus(${i},'작업중')">
-작업중
-</button>
 
 <button class="btn" onclick="completeOrder(${i})">
 완료
@@ -449,18 +467,6 @@ function completeOrder(i){
 let orders=JSON.parse(localStorage.getItem("orders")||"[]")
 
 orders.splice(i,1)
-
-localStorage.setItem("orders",JSON.stringify(orders))
-
-loadOrders()
-
-}
-
-function changeStatus(i,s){
-
-let orders=JSON.parse(localStorage.getItem("orders"))
-
-orders[i].status=s
 
 localStorage.setItem("orders",JSON.stringify(orders))
 
