@@ -312,13 +312,27 @@ document.getElementById("colorText").innerText=c
 
 }
 
-function submitOrder(){
+async function submitOrder(){
 
 let file=document.getElementById("file").files[0]
 
-let reader=new FileReader()
+if(!file){
+alert("파일을 선택해주세요")
+return
+}
 
-reader.onload=function(){
+let formData=new FormData()
+formData.append("file",file)
+formData.append("upload_preset","unsigned_upload")
+
+let res=await fetch("https://api.cloudinary.com/v1_1/dni642dal/upload",{
+method:"POST",
+body:formData
+})
+
+let data=await res.json()
+
+let fileUrl=data.secure_url
 
 let order={
 
@@ -327,7 +341,7 @@ color:color,
 font:document.getElementById("font").value,
 type:document.getElementById("type").value,
 request:document.getElementById("request").value,
-file:reader.result,
+file:fileUrl,
 time:new Date().toLocaleString()
 
 }
