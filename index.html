@@ -72,42 +72,55 @@ display:block;
 }
 
 .card{
-background:rgba(20,20,40,0.75);
+background:rgba(25,25,45,0.75);
 backdrop-filter:blur(18px);
-padding:30px;
+padding:35px;
 border-radius:30px;
 margin:20px auto;
 max-width:520px;
 
+border:1px solid rgba(255,255,255,0.1);
+
 box-shadow:
 0 20px 50px rgba(0,0,0,0.7),
-0 0 30px rgba(255,122,200,0.2);
-
-border:1px solid rgba(255,255,255,0.08);
+0 0 30px rgba(255,122,200,0.3);
 
 transition:0.3s;
 }
 
 .card:hover{
-transform:translateY(-4px);
+transform:translateY(-5px);
 box-shadow:
 0 30px 70px rgba(0,0,0,0.8),
-0 0 40px rgba(255,122,200,0.4);
+0 0 40px rgba(255,122,200,0.5);
 }
 
 input,select,textarea{
-width:80%;
-padding:12px;
-margin:8px;
-border-radius:15px;
+width:85%;
+padding:14px;
+margin:10px;
+
+border-radius:14px;
 border:none;
+
+background:#1c1c38;
+color:white;
+
 font-size:15px;
+
+box-shadow:inset 0 0 10px rgba(0,0,0,0.5);
+
+transition:0.2s;
 }
 
-textarea{
-height:90px;
+input:focus,
+textarea:focus,
+select:focus{
+outline:none;
+box-shadow:
+0 0 10px #ff7ac8,
+inset 0 0 10px rgba(0,0,0,0.6);
 }
-
 .colors{
 display:flex;
 justify-content:center;
@@ -203,6 +216,44 @@ pointer-events:none;
 box-shadow:
 0 0 40px rgba(255,122,200,0.3),
 inset 0 0 30px rgba(255,255,255,0.05);
+}
+ /* 별 반짝이 */
+.stars{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+pointer-events:none;
+z-index:-1;
+}
+
+.star{
+position:absolute;
+width:4px;
+height:4px;
+background:#ff7ac8;
+border-radius:50%;
+box-shadow:0 0 10px #ff7ac8,0 0 20px #ff7ac8;
+animation:twinkle 2s infinite alternate;
+}
+
+@keyframes twinkle{
+0%{opacity:0.2;transform:scale(0.8)}
+100%{opacity:1;transform:scale(1.4)}
+}
+
+/* 제목 업그레이드 */
+.title{
+font-size:46px;
+margin-top:40px;
+background:linear-gradient(45deg,#ff7ac8,#ff3b8d,#8b5cf6);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+text-shadow:
+0 0 20px rgba(255,122,200,0.7),
+0 0 40px rgba(255,122,200,0.5);
+letter-spacing:3px;
 }
 </style>
 </head>
@@ -521,7 +572,22 @@ loadOrders()
 
 }
 
+const starContainer=document.createElement("div")
+starContainer.className="stars"
+document.body.appendChild(starContainer)
 
+for(let i=0;i<60;i++){
+
+let star=document.createElement("div")
+star.className="star"
+
+star.style.left=Math.random()*100+"%"
+star.style.top=Math.random()*100+"%"
+star.style.animationDelay=Math.random()*2+"s"
+
+starContainer.appendChild(star)
+
+}
 </script>
 
 </body>
