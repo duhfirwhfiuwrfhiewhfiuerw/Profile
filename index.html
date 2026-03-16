@@ -474,11 +474,26 @@ await db.collection("orders").doc(id).delete()
 loadOrders()
 
 }
+async function completeOrder(id){
 
+await db.collection("orders").doc(id).delete()
+
+loadOrders()
+
+}
+
+document.body.addEventListener("click",function(){
+
+let frame=document.getElementById("bgm")
+
+frame.src="https://www.youtube.com/embed/IYhoir6XLEM?autoplay=1&loop=1&playlist=IYhoir6XLEM&controls=0"
+
+},{once:true})
 </script>
 <iframe
 class="bgm"
-src="https://www.youtube.com/embed/IYhoir6XLEM?autoplay=1&loop=1&playlist=IYhoir6XLEM&controls=0&showinfo=0&modestbranding=1"
+id="bgm"
+src="https://www.youtube.com/embed/IYhoir6XLEM?autoplay=1&loop=1&playlist=IYhoir6XLEM&controls=0&mute=1"
 allow="autoplay">
 </iframe>
 </body>
