@@ -6,13 +6,13 @@
 
 <title>프로필 제작</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600&display=swap" rel="stylesheet">
 
 <style>
 
 *{
 box-sizing:border-box;
-font-family:'Nunito',sans-serif;
+font-family:'Baloo 2',cursive;
 }
 
 body{
@@ -137,19 +137,13 @@ flex-wrap:wrap;
 }
 
 .color{
-
 width:40px;
-
 height:40px;
-
 margin:6px;
-
 border-radius:10px;
-
 cursor:pointer;
-
 border:2px solid white;
-
+box-shadow:0 0 5px rgba(0,0,0,0.3);
 }
 
 /* 갤러리 */
@@ -239,15 +233,27 @@ margin-top:10px;
 
 <div class="colors">
 
-<div class="color" style="background:red" onclick="setColor('빨강')"></div>
-<div class="color" style="background:orange" onclick="setColor('주황')"></div>
-<div class="color" style="background:yellow" onclick="setColor('노랑')"></div>
-<div class="color" style="background:green" onclick="setColor('초록')"></div>
-<div class="color" style="background:blue" onclick="setColor('파랑')"></div>
-<div class="color" style="background:purple" onclick="setColor('보라')"></div>
+<div class="colors">
+
+<div class="color" style="background:#ff3b3b" onclick="setColor('빨강')"></div>
+
+<div class="color" style="background:#ff8c1a" onclick="setColor('주황')"></div>
+
+<div class="color" style="background:#ffd500" onclick="setColor('노랑')"></div>
+
+<div class="color" style="background:#32d74b" onclick="setColor('초록')"></div>
+
+<div class="color" style="background:#3b82ff" onclick="setColor('파랑')"></div>
+
+<div class="color" style="background:#004cff" onclick="setColor('남색')"></div>
+
+<div class="color" style="background:#8b5cf6" onclick="setColor('보라')"></div>
+
+<div class="color" style="background:#ff7ac8" onclick="setColor('핑크')"></div>
+
+<div class="color" style="background:black" onclick="setColor('검정')"></div>
 
 </div>
-
 </div>
 
 선택 색상 : <span id="colorText">없음</span>
