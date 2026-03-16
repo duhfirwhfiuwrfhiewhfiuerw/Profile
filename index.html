@@ -95,12 +95,6 @@ cursor:pointer;
 border:2px solid white;
 }
 
-.gallery img{
-width:150px;
-margin:10px;
-border-radius:15px;
-}
-
 .order{
 background:#222242;
 padding:15px;
@@ -233,35 +227,6 @@ margin-bottom:20px;
 </div>
 </div>
 
-<div id="price" class="page">
-
-<div class="card">
-
-<h2>가격 안내</h2>
-
-<p>
-
-선불 : 미네랄 3000만  
-<br>
-후불 : 미네랄 4000만
-
-<br><br>
-
-창고 입금  
-<br>
-미네랄 선물 (500x6일)  
-<br>
-와토 전달
-
-</p>
-
-<button class="btn" onclick="page('main')">
-뒤로가기
-</button>
-
-</div>
-</div>
-
 <div id="admin" class="page">
 
 <h2 class="title">주문 관리</h2>
@@ -321,10 +286,26 @@ document.getElementById("colorText").innerText=c
 
 async function submitOrder(){
 
+let nick=document.getElementById("nick").value
 let file=document.getElementById("file").files[0]
 
+if(!nick){
+alert("닉네임 입력해주세요")
+return
+}
+
 if(!file){
-alert("파일 선택")
+alert("파일 선택해주세요")
+return
+}
+
+if(file.size > 50*1024*1024){
+alert("파일은 50MB 이하만 가능합니다")
+return
+}
+
+if(!file.type.startsWith("image") && !file.type.startsWith("video")){
+alert("이미지 또는 영상만 업로드 가능합니다")
 return
 }
 
@@ -345,7 +326,7 @@ let fileUrl=data.secure_url
 
 await db.collection("orders").add({
 
-nick:document.getElementById("nick").value,
+nick:nick,
 color:color,
 font:document.getElementById("font").value,
 type:document.getElementById("type").value,
@@ -368,7 +349,6 @@ function adminLogin(){
 let pw=prompt("관리자 비밀번호")
 
 if(pw==="0915") page("admin")
-
 else alert("비밀번호 틀림")
 
 }
@@ -385,6 +365,14 @@ snapshot.forEach(doc=>{
 
 let o=doc.data()
 
+let preview=""
+
+if(o.file && (o.file.includes(".mp4") || o.file.includes(".webm") || o.file.includes(".mov"))){
+preview=`<video src="${o.file}" controls></video>`
+}else{
+preview=`<img src="${o.file}">`
+}
+
 html+=`
 
 <div class="order">
@@ -396,7 +384,7 @@ html+=`
 요청 : ${o.request}<br>
 
 <div class="preview">
-<img src="${o.file}">
+${preview}
 </div>
 
 <button class="btn" onclick="completeOrder('${doc.id}')">
