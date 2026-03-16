@@ -36,10 +36,10 @@ box-shadow:0 0 10px #00ffff;
 .neonBtn:hover{
 background:#00ffff;
 color:black;
-box-shadow:0 0 20px #00ffff;
+box-shadow:0 0 25px #00ffff;
 }
 
-/* 숨김 */
+/* 페이지 */
 
 .page{
 display:none;
@@ -49,13 +49,12 @@ display:none;
 display:block;
 }
 
-/* 색상 선택 */
+/* 색상 */
 
 .colorBox{
 display:flex;
 flex-wrap:wrap;
 justify-content:center;
-margin-top:10px;
 }
 
 .color{
@@ -64,30 +63,36 @@ height:40px;
 margin:5px;
 border-radius:6px;
 cursor:pointer;
+border:2px solid white;
+}
+
+/* 입력 */
+
+input,select,textarea{
+margin:10px;
+padding:10px;
+border-radius:8px;
+border:none;
 }
 
 textarea{
 width:80%;
 height:100px;
-margin-top:10px;
-border-radius:8px;
-border:none;
-padding:10px;
 }
 
-select{
-padding:8px;
-margin:10px;
-border-radius:6px;
-}
-
-/* GIF 모음 */
+/* 갤러리 */
 
 .gallery img{
-width:150px;
+width:160px;
 margin:10px;
 border-radius:10px;
-box-shadow:0 0 10px #00ffff;
+box-shadow:0 0 15px #00ffff;
+}
+
+.orderBox{
+border:1px solid #00ffff;
+padding:10px;
+margin:10px;
 }
 
 </style>
@@ -95,7 +100,7 @@ box-shadow:0 0 10px #00ffff;
 
 <body>
 
-<!-- 첫 화면 -->
+<!-- 메인 -->
 
 <div id="main" class="page active">
 
@@ -106,17 +111,25 @@ box-shadow:0 0 10px #00ffff;
 </button>
 
 <button class="neonBtn" onclick="goPage('price')">
-프로필 가격 및 프로필 모음집
+프로필 가격 및 모음집
+</button>
+
+<button class="neonBtn" onclick="adminLogin()">
+관리자 페이지
 </button>
 
 </div>
 
-
-<!-- 프로필 만들기 -->
+<!-- 신청 -->
 
 <div id="make" class="page">
 
 <h2>프로필 신청</h2>
+
+닉네임<br>
+<input id="nickname" placeholder="닉네임 입력">
+
+<br>
 
 <button class="neonBtn" onclick="toggleColor()">
 프로필 색상 선택
@@ -126,30 +139,33 @@ box-shadow:0 0 10px #00ffff;
 
 <div class="colorBox">
 
-<div class="color" style="background:red"></div>
-<div class="color" style="background:orange"></div>
-<div class="color" style="background:yellow"></div>
-<div class="color" style="background:green"></div>
-<div class="color" style="background:blue"></div>
-<div class="color" style="background:purple"></div>
-<div class="color" style="background:pink"></div>
+<div class="color" style="background:red" onclick="setColor('빨강')"></div>
+<div class="color" style="background:orange" onclick="setColor('주황')"></div>
+<div class="color" style="background:yellow" onclick="setColor('노랑')"></div>
+<div class="color" style="background:green" onclick="setColor('초록')"></div>
+<div class="color" style="background:blue" onclick="setColor('파랑')"></div>
+<div class="color" style="background:purple" onclick="setColor('보라')"></div>
+<div class="color" style="background:pink" onclick="setColor('핑크')"></div>
 
 </div>
 
 </div>
 
-<br>
-
-영상 / 이미지 업로드<br>
-<input type="file">
+선택 색상 : <span id="colorText">없음</span>
 
 <br><br>
 
-글씨체 스타일
+영상 / 이미지 업로드<br>
+
+<input type="file">
 
 <br>
 
-<select>
+글씨체 선택
+
+<br>
+
+<select id="font">
 
 <option>둥글게</option>
 <option>날렵하게</option>
@@ -164,7 +180,7 @@ box-shadow:0 0 10px #00ffff;
 
 <br>
 
-<select>
+<select id="type">
 
 <option>숲 프로필</option>
 <option>와고용 프로필</option>
@@ -177,11 +193,11 @@ box-shadow:0 0 10px #00ffff;
 
 <br>
 
-<textarea placeholder="원하는 내용을 자유롭게 적어주세요"></textarea>
+<textarea id="request"></textarea>
 
 <br>
 
-<button class="neonBtn" onclick="submitProfile()">
+<button class="neonBtn" onclick="submitOrder()">
 신청하기
 </button>
 
@@ -192,18 +208,29 @@ box-shadow:0 0 10px #00ffff;
 </div>
 
 
-<!-- 가격 페이지 -->
+<!-- 가격 -->
 
 <div id="price" class="page">
 
 <h2>프로필 가격 안내</h2>
 
 <p>
-안녕하세요 😊<br><br>
 
-프로필 가격은<br>
-선불 : 미네랄 3000만<br>
-후불 : 미네랄 4000만 입니다.
+안녕하세요 😊
+
+<br><br>
+
+프로필 가격은
+
+<br><br>
+
+선불 : 미네랄 3000만  
+후불 : 미네랄 4000만
+
+<br><br>
+
+입니다.
+
 </p>
 
 <p>
@@ -212,17 +239,15 @@ box-shadow:0 0 10px #00ffff;
 
 <br><br>
 
-1️⃣ 창고 입금<br>
-2️⃣ 미네랄 선물 (500 × 6일)<br>
-3️⃣ 와토로 전달
+1️⃣ 창고 입금  
+2️⃣ 미네랄 선물 (500 × 6일)  
+3️⃣ 와토 전달
 
 </p>
 
 <h2>프로필 모음집</h2>
 
 <div class="gallery">
-
-<!-- 여기 GIF 넣으면 됨 -->
 
 <img src="profile1.gif">
 <img src="profile2.gif">
@@ -237,7 +262,23 @@ box-shadow:0 0 10px #00ffff;
 </div>
 
 
+<!-- 관리자 -->
+
+<div id="admin" class="page">
+
+<h2>신청 목록</h2>
+
+<div id="orderList"></div>
+
+<button class="neonBtn" onclick="goPage('main')">
+뒤로가기
+</button>
+
+</div>
+
 <script>
+
+let selectedColor="없음"
 
 function goPage(page){
 
@@ -247,27 +288,105 @@ p.classList.remove("active")
 
 document.getElementById(page).classList.add("active")
 
+if(page==="admin") loadOrders()
+
 }
 
 function toggleColor(){
 
 let area=document.getElementById("colorArea")
 
-if(area.style.display=="none"){
+area.style.display=area.style.display==="none"?"block":"none"
 
-area.style.display="block"
+}
+
+function setColor(c){
+
+selectedColor=c
+
+document.getElementById("colorText").innerText=c
+
+}
+
+function submitOrder(){
+
+let nickname=document.getElementById("nickname").value
+let font=document.getElementById("font").value
+let type=document.getElementById("type").value
+let request=document.getElementById("request").value
+
+if(nickname===""){
+
+alert("닉네임을 입력해주세요")
+return
+
+}
+
+let order={
+
+nickname,
+color:selectedColor,
+font,
+type,
+request,
+time:new Date().toLocaleString()
+
+}
+
+let orders=JSON.parse(localStorage.getItem("orders")||"[]")
+
+orders.push(order)
+
+localStorage.setItem("orders",JSON.stringify(orders))
+
+alert("신청이 접수되었습니다!")
+
+goPage("main")
+
+}
+
+function adminLogin(){
+
+let pw=prompt("관리자 비밀번호")
+
+if(pw==="1234"){
+
+goPage("admin")
 
 }else{
 
-area.style.display="none"
+alert("비밀번호 틀림")
 
 }
 
 }
 
-function submitProfile(){
+function loadOrders(){
 
-alert("프로필 신청이 접수되었습니다!")
+let orders=JSON.parse(localStorage.getItem("orders")||"[]")
+
+let html=""
+
+orders.reverse().forEach(o=>{
+
+html+=`
+
+<div class="orderBox">
+
+닉네임 : ${o.nickname}<br>
+색상 : ${o.color}<br>
+글씨체 : ${o.font}<br>
+프로필 종류 : ${o.type}<br>
+요청사항 : ${o.request}<br>
+신청시간 : ${o.time}
+
+</div>
+
+`
+
+})
+
+document.getElementById("orderList").innerHTML=html
 
 }
 
