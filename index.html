@@ -3,46 +3,74 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>프로필 제작</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
 
 <style>
 
 body{
-background:#000;
-color:white;
-font-family:sans-serif;
-text-align:center;
 margin:0;
-padding:20px;
+background:#050510;
+font-family:'Jua',sans-serif;
+color:white;
+text-align:center;
 }
 
-/* 네온 버튼 */
+/* 네온 글로우 */
 
-.neonBtn{
+.neon{
+color:#00ffff;
+text-shadow:
+0 0 5px #00ffff,
+0 0 10px #00ffff,
+0 0 20px #00ffff;
+}
+
+/* 버튼 */
+
+.btn{
+
 display:block;
 width:260px;
 margin:15px auto;
 padding:15px;
-border:2px solid #00ffff;
-color:#00ffff;
-background:transparent;
+
+border-radius:30px;
+
+background:linear-gradient(145deg,#0ff,#0088ff);
+
+color:black;
+
 font-size:18px;
-border-radius:10px;
+
+border:none;
+
 cursor:pointer;
+
+box-shadow:
+0 0 10px #00ffff,
+0 0 30px #0088ff;
+
 transition:0.3s;
-box-shadow:0 0 10px #00ffff;
+
 }
 
-.neonBtn:hover{
-background:#00ffff;
-color:black;
-box-shadow:0 0 25px #00ffff;
+.btn:hover{
+
+transform:scale(1.05);
+box-shadow:
+0 0 20px #00ffff,
+0 0 40px #0088ff;
+
 }
 
 /* 페이지 */
 
 .page{
 display:none;
+padding:30px;
 }
 
 .active{
@@ -51,28 +79,32 @@ display:block;
 
 /* 색상 */
 
-.colorBox{
+.colors{
 display:flex;
-flex-wrap:wrap;
 justify-content:center;
+flex-wrap:wrap;
 }
 
 .color{
-width:40px;
-height:40px;
-margin:5px;
-border-radius:6px;
+
+width:45px;
+height:45px;
+margin:6px;
+border-radius:10px;
 cursor:pointer;
 border:2px solid white;
+
 }
 
 /* 입력 */
 
 input,select,textarea{
+
 margin:10px;
 padding:10px;
-border-radius:8px;
+border-radius:20px;
 border:none;
+
 }
 
 textarea{
@@ -83,42 +115,77 @@ height:100px;
 /* 갤러리 */
 
 .gallery img{
-width:160px;
+
+width:170px;
+border-radius:15px;
 margin:10px;
-border-radius:10px;
-box-shadow:0 0 15px #00ffff;
+
+box-shadow:0 0 20px cyan;
+
 }
 
-.orderBox{
-border:1px solid #00ffff;
-padding:10px;
-margin:10px;
+/* 주문 */
+
+.order{
+
+border:1px solid cyan;
+
+margin:15px;
+padding:15px;
+
+border-radius:15px;
+
 }
+
+.preview img{
+
+max-width:200px;
+margin:10px;
+border-radius:10px;
+
+}
+
+video{
+
+max-width:200px;
+margin:10px;
+
+}
+
+.status{
+
+padding:6px 12px;
+border-radius:20px;
+
+}
+
+.wait{background:orange}
+.work{background:#00aaff}
+.done{background:#00cc66}
 
 </style>
 </head>
 
 <body>
 
-<!-- 메인 -->
-
 <div id="main" class="page active">
 
-<h1>프로필 제작</h1>
+<h1 class="neon">프로필 제작</h1>
 
-<button class="neonBtn" onclick="goPage('make')">
+<button class="btn" onclick="page('make')">
 프로필 만들러가기
 </button>
 
-<button class="neonBtn" onclick="goPage('price')">
-프로필 가격 및 모음집
+<button class="btn" onclick="page('price')">
+가격 및 프로필 모음집
 </button>
 
-<button class="neonBtn" onclick="adminLogin()">
-관리자 페이지
+<button class="btn" onclick="adminLogin()">
+관리자
 </button>
 
 </div>
+
 
 <!-- 신청 -->
 
@@ -126,18 +193,21 @@ margin:10px;
 
 <h2>프로필 신청</h2>
 
-닉네임<br>
-<input id="nickname" placeholder="닉네임 입력">
+닉네임
 
 <br>
 
-<button class="neonBtn" onclick="toggleColor()">
+<input id="nick">
+
+<br>
+
+<button class="btn" onclick="toggleColor()">
 프로필 색상 선택
 </button>
 
-<div id="colorArea" style="display:none">
+<div id="colorBox" style="display:none">
 
-<div class="colorBox">
+<div class="colors">
 
 <div class="color" style="background:red" onclick="setColor('빨강')"></div>
 <div class="color" style="background:orange" onclick="setColor('주황')"></div>
@@ -153,15 +223,17 @@ margin:10px;
 
 선택 색상 : <span id="colorText">없음</span>
 
-<br><br>
+<br>
 
-영상 / 이미지 업로드<br>
-
-<input type="file">
+영상 / 이미지
 
 <br>
 
-글씨체 선택
+<input type="file" id="file">
+
+<br>
+
+글씨체
 
 <br>
 
@@ -197,11 +269,11 @@ margin:10px;
 
 <br>
 
-<button class="neonBtn" onclick="submitOrder()">
+<button class="btn" onclick="submitOrder()">
 신청하기
 </button>
 
-<button class="neonBtn" onclick="goPage('main')">
+<button class="btn" onclick="page('main')">
 뒤로가기
 </button>
 
@@ -212,40 +284,26 @@ margin:10px;
 
 <div id="price" class="page">
 
-<h2>프로필 가격 안내</h2>
+<h2 class="neon">가격 안내</h2>
 
 <p>
-
-안녕하세요 😊
-
-<br><br>
-
-프로필 가격은
-
-<br><br>
 
 선불 : 미네랄 3000만  
 후불 : 미네랄 4000만
 
 <br><br>
 
-입니다.
+입금 방법
+
+<br>
+
+창고 입금  
+미네랄 선물 (500x6일)  
+와토 전달
 
 </p>
 
-<p>
-
-입금 방법은 총 3가지입니다.
-
-<br><br>
-
-1️⃣ 창고 입금  
-2️⃣ 미네랄 선물 (500 × 6일)  
-3️⃣ 와토 전달
-
-</p>
-
-<h2>프로필 모음집</h2>
+<h2 class="neon">프로필 모음집</h2>
 
 <div class="gallery">
 
@@ -255,7 +313,7 @@ margin:10px;
 
 </div>
 
-<button class="neonBtn" onclick="goPage('main')">
+<button class="btn" onclick="page('main')">
 뒤로가기
 </button>
 
@@ -266,11 +324,11 @@ margin:10px;
 
 <div id="admin" class="page">
 
-<h2>신청 목록</h2>
+<h2 class="neon">주문 관리</h2>
 
-<div id="orderList"></div>
+<div id="orders"></div>
 
-<button class="neonBtn" onclick="goPage('main')">
+<button class="btn" onclick="page('main')">
 뒤로가기
 </button>
 
@@ -278,57 +336,49 @@ margin:10px;
 
 <script>
 
-let selectedColor="없음"
+let color="없음"
 
-function goPage(page){
+function page(p){
 
-document.querySelectorAll(".page").forEach(p=>{
-p.classList.remove("active")
-})
+document.querySelectorAll(".page").forEach(e=>e.classList.remove("active"))
+document.getElementById(p).classList.add("active")
 
-document.getElementById(page).classList.add("active")
-
-if(page==="admin") loadOrders()
+if(p==="admin") loadOrders()
 
 }
 
 function toggleColor(){
 
-let area=document.getElementById("colorArea")
+let b=document.getElementById("colorBox")
 
-area.style.display=area.style.display==="none"?"block":"none"
+b.style.display=b.style.display==="none"?"block":"none"
 
 }
 
 function setColor(c){
 
-selectedColor=c
-
+color=c
 document.getElementById("colorText").innerText=c
 
 }
 
 function submitOrder(){
 
-let nickname=document.getElementById("nickname").value
-let font=document.getElementById("font").value
-let type=document.getElementById("type").value
-let request=document.getElementById("request").value
+let file=document.getElementById("file").files[0]
 
-if(nickname===""){
+let reader=new FileReader()
 
-alert("닉네임을 입력해주세요")
-return
-
-}
+reader.onload=function(){
 
 let order={
 
-nickname,
-color:selectedColor,
-font,
-type,
-request,
+nick:document.getElementById("nick").value,
+color:color,
+font:document.getElementById("font").value,
+type:document.getElementById("type").value,
+request:document.getElementById("request").value,
+file:reader.result,
+status:"대기",
 time:new Date().toLocaleString()
 
 }
@@ -339,9 +389,13 @@ orders.push(order)
 
 localStorage.setItem("orders",JSON.stringify(orders))
 
-alert("신청이 접수되었습니다!")
+alert("신청 완료!")
 
-goPage("main")
+page("main")
+
+}
+
+if(file) reader.readAsDataURL(file)
 
 }
 
@@ -351,7 +405,7 @@ let pw=prompt("관리자 비밀번호")
 
 if(pw==="1234"){
 
-goPage("admin")
+page("admin")
 
 }else{
 
@@ -367,26 +421,70 @@ let orders=JSON.parse(localStorage.getItem("orders")||"[]")
 
 let html=""
 
-orders.reverse().forEach(o=>{
+orders.forEach((o,i)=>{
 
 html+=`
 
-<div class="orderBox">
+<div class="order">
 
-닉네임 : ${o.nickname}<br>
+닉네임 : ${o.nick}<br>
 색상 : ${o.color}<br>
 글씨체 : ${o.font}<br>
-프로필 종류 : ${o.type}<br>
-요청사항 : ${o.request}<br>
-신청시간 : ${o.time}
+프로필 : ${o.type}<br>
+요청 : ${o.request}<br>
+시간 : ${o.time}
+
+<div class="preview">
+
+${o.file?.includes("video")?
+`<video src="${o.file}" controls></video>`
+:`<img src="${o.file}">`}
+
+</div>
+
+상태 : ${o.status}
+
+<br><br>
+
+<button class="btn" onclick="changeStatus(${i},'작업중')">
+작업중
+</button>
+
+<button class="btn" onclick="completeOrder(${i})">
+완료
+</button>
 
 </div>
 
 `
 
 })
+function completeOrder(i){
 
-document.getElementById("orderList").innerHTML=html
+let orders=JSON.parse(localStorage.getItem("orders")||"[]")
+
+orders.splice(i,1)
+
+localStorage.setItem("orders",JSON.stringify(orders))
+
+loadOrders()
+
+alert("주문이 완료 처리되었습니다!")
+
+}
+document.getElementById("orders").innerHTML=html
+
+}
+
+function changeStatus(i,s){
+
+let orders=JSON.parse(localStorage.getItem("orders"))
+
+orders[i].status=s
+
+localStorage.setItem("orders",JSON.stringify(orders))
+
+loadOrders()
 
 }
 
