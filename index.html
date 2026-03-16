@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>프로필 제작</title>
+
+<style>
+
+body{
+background:#000;
+color:white;
+font-family:sans-serif;
+text-align:center;
+margin:0;
+padding:20px;
+}
+
+/* 네온 버튼 */
+
+.neonBtn{
+display:block;
+width:260px;
+margin:15px auto;
+padding:15px;
+border:2px solid #00ffff;
+color:#00ffff;
+background:transparent;
+font-size:18px;
+border-radius:10px;
+cursor:pointer;
+transition:0.3s;
+box-shadow:0 0 10px #00ffff;
+}
+
+.neonBtn:hover{
+background:#00ffff;
+color:black;
+box-shadow:0 0 20px #00ffff;
+}
+
+/* 숨김 */
+
+.page{
+display:none;
+}
+
+.active{
+display:block;
+}
+
+/* 색상 선택 */
+
+.colorBox{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+margin-top:10px;
+}
+
+.color{
+width:40px;
+height:40px;
+margin:5px;
+border-radius:6px;
+cursor:pointer;
+}
+
+textarea{
+width:80%;
+height:100px;
+margin-top:10px;
+border-radius:8px;
+border:none;
+padding:10px;
+}
+
+select{
+padding:8px;
+margin:10px;
+border-radius:6px;
+}
+
+/* GIF 모음 */
+
+.gallery img{
+width:150px;
+margin:10px;
+border-radius:10px;
+box-shadow:0 0 10px #00ffff;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- 첫 화면 -->
+
+<div id="main" class="page active">
+
+<h1>프로필 제작</h1>
+
+<button class="neonBtn" onclick="goPage('make')">
+프로필 만들러가기
+</button>
+
+<button class="neonBtn" onclick="goPage('price')">
+프로필 가격 및 프로필 모음집
+</button>
+
+</div>
+
+
+<!-- 프로필 만들기 -->
+
+<div id="make" class="page">
+
+<h2>프로필 신청</h2>
+
+<button class="neonBtn" onclick="toggleColor()">
+프로필 색상 선택
+</button>
+
+<div id="colorArea" style="display:none">
+
+<div class="colorBox">
+
+<div class="color" style="background:red"></div>
+<div class="color" style="background:orange"></div>
+<div class="color" style="background:yellow"></div>
+<div class="color" style="background:green"></div>
+<div class="color" style="background:blue"></div>
+<div class="color" style="background:purple"></div>
+<div class="color" style="background:pink"></div>
+
+</div>
+
+</div>
+
+<br>
+
+영상 / 이미지 업로드<br>
+<input type="file">
+
+<br><br>
+
+글씨체 스타일
+
+<br>
+
+<select>
+
+<option>둥글게</option>
+<option>날렵하게</option>
+<option>얇게</option>
+<option>두껍게</option>
+
+</select>
+
+<br>
+
+프로필 종류
+
+<br>
+
+<select>
+
+<option>숲 프로필</option>
+<option>와고용 프로필</option>
+
+</select>
+
+<br>
+
+요청사항
+
+<br>
+
+<textarea placeholder="원하는 내용을 자유롭게 적어주세요"></textarea>
+
+<br>
+
+<button class="neonBtn" onclick="submitProfile()">
+신청하기
+</button>
+
+<button class="neonBtn" onclick="goPage('main')">
+뒤로가기
+</button>
+
+</div>
+
+
+<!-- 가격 페이지 -->
+
+<div id="price" class="page">
+
+<h2>프로필 가격 안내</h2>
+
+<p>
+안녕하세요 😊<br><br>
+
+프로필 가격은<br>
+선불 : 미네랄 3000만<br>
+후불 : 미네랄 4000만 입니다.
+</p>
+
+<p>
+
+입금 방법은 총 3가지입니다.
+
+<br><br>
+
+1️⃣ 창고 입금<br>
+2️⃣ 미네랄 선물 (500 × 6일)<br>
+3️⃣ 와토로 전달
+
+</p>
+
+<h2>프로필 모음집</h2>
+
+<div class="gallery">
+
+<!-- 여기 GIF 넣으면 됨 -->
+
+<img src="profile1.gif">
+<img src="profile2.gif">
+<img src="profile3.gif">
+
+</div>
+
+<button class="neonBtn" onclick="goPage('main')">
+뒤로가기
+</button>
+
+</div>
+
+
+<script>
+
+function goPage(page){
+
+document.querySelectorAll(".page").forEach(p=>{
+p.classList.remove("active")
+})
+
+document.getElementById(page).classList.add("active")
+
+}
+
+function toggleColor(){
+
+let area=document.getElementById("colorArea")
+
+if(area.style.display=="none"){
+
+area.style.display="block"
+
+}else{
+
+area.style.display="none"
+
+}
+
+}
+
+function submitProfile(){
+
+alert("프로필 신청이 접수되었습니다!")
+
+}
+
+</script>
+
+</body>
+</html>
