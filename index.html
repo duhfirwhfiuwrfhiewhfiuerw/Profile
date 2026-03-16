@@ -17,12 +17,16 @@ font-family:'Jua',sans-serif;
 
 body{
 margin:0;
-background:radial-gradient(circle at top,#1f1f3b,#0b0b17);
+min-height:100vh;
 color:white;
 text-align:center;
-min-height:100vh;
+background:
+radial-gradient(circle at 20% 20%,#ff7ac833,transparent),
+radial-gradient(circle at 80% 30%,#8b5cf633,transparent),
+radial-gradient(circle at 50% 80%,#3b82ff33,transparent),
+linear-gradient(180deg,#0b0b17,#1a1a35);
+overflow-x:hidden;
 }
-
 .title{
 font-size:42px;
 margin-top:40px;
@@ -35,19 +39,27 @@ display:block;
 width:260px;
 margin:15px auto;
 padding:16px;
+
 border-radius:40px;
-background:linear-gradient(45deg,#ff7ac8,#ff3b8d);
+border:none;
+
+background:linear-gradient(135deg,#ff7ac8,#ff3b8d);
+
 color:white;
 font-size:18px;
-border:none;
 cursor:pointer;
+
 transition:0.25s;
-box-shadow:0 8px 25px rgba(255,122,200,0.6);
+
+box-shadow:
+0 10px 30px rgba(255,122,200,0.5),
+inset 0 -3px 10px rgba(0,0,0,0.3);
 }
 
 .btn:hover{
-transform:translateY(-4px) scale(1.03);
-box-shadow:0 15px 35px rgba(255,122,200,0.8);
+transform:translateY(-4px) scale(1.05);
+box-shadow:
+0 20px 40px rgba(255,122,200,0.8);
 }
 
 .page{
@@ -60,14 +72,27 @@ display:block;
 }
 
 .card{
-background:rgba(30,30,53,0.85);
-backdrop-filter:blur(10px);
-padding:25px;
-border-radius:25px;
-margin:15px auto;
+background:rgba(20,20,40,0.75);
+backdrop-filter:blur(18px);
+padding:30px;
+border-radius:30px;
+margin:20px auto;
 max-width:520px;
-box-shadow:0 15px 35px rgba(0,0,0,0.6);
+
+box-shadow:
+0 20px 50px rgba(0,0,0,0.7),
+0 0 30px rgba(255,122,200,0.2);
+
 border:1px solid rgba(255,255,255,0.08);
+
+transition:0.3s;
+}
+
+.card:hover{
+transform:translateY(-4px);
+box-shadow:
+0 30px 70px rgba(0,0,0,0.8),
+0 0 40px rgba(255,122,200,0.4);
 }
 
 input,select,textarea{
@@ -149,27 +174,41 @@ flex-wrap:wrap;
 }
 
 .gallery img{
-width:120px;
-height:120px;
+width:110px;
+height:110px;
 object-fit:cover;
-margin:8px;
-border-radius:12px;
+margin:10px;
+border-radius:14px;
+
+border:2px solid rgba(255,255,255,0.1);
+
+transition:0.25s;
 }
+
 .gallery img:hover{
-transform:scale(1.08);
-box-shadow:0 12px 30px rgba(255,122,200,0.6);
+transform:scale(1.1) rotate(2deg);
+
+box-shadow:
+0 15px 35px rgba(255,122,200,0.6);
 }
-.bgm{
-position:absolute;
-width:0;
-height:0;
-border:0;
+.frame{
+position:fixed;
+top:10px;
+left:10px;
+right:10px;
+bottom:10px;
+border:2px solid rgba(255,255,255,0.15);
+border-radius:30px;
+pointer-events:none;
+box-shadow:
+0 0 40px rgba(255,122,200,0.3),
+inset 0 0 30px rgba(255,255,255,0.05);
 }
 </style>
 </head>
 
 <body>
-
+<div class="frame"></div>
 <div id="loading">
 <div class="loader"></div>
 잠시만 기다려주세요...
