@@ -564,13 +564,6 @@ await db.collection("orders").doc(id).delete()
 loadOrders()
 
 }
-async function completeOrder(id){
-
-await db.collection("orders").doc(id).delete()
-
-loadOrders()
-
-}
 
 const starContainer=document.createElement("div")
 starContainer.className="stars"
