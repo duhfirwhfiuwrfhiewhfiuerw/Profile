@@ -21,26 +21,19 @@ min-height:100vh;
 color:#333;
 text-align:center;
 
-/* 대리석 느낌 */
 background:
 linear-gradient(120deg,#f8f6f2 0%,#f1ede7 40%,#ffffff 100%),
 radial-gradient(circle at 30% 30%,rgba(255,182,193,0.15),transparent 60%),
 radial-gradient(circle at 70% 70%,rgba(200,200,200,0.15),transparent 60%);
 
-background-blend-mode:overlay;
-
 overflow-x:hidden;
 }
+
 .title{
 font-size:42px;
 margin-top:40px;
-
 color:#dba3b0;
-
-text-shadow:
-0 0 10px rgba(255,182,193,0.6);
-
-letter-spacing:2px;
+text-shadow:0 0 10px rgba(255,182,193,0.6);
 }
 
 .btn{
@@ -48,166 +41,69 @@ display:block;
 width:260px;
 margin:15px auto;
 padding:16px;
-
 border-radius:40px;
 border:none;
-
 background:linear-gradient(145deg,#f3ede5,#e6dfd5);
-
-color:#5c5248;
-font-size:18px;
 cursor:pointer;
-
-transition:0.25s;
-
-box-shadow:
-6px 6px 12px rgba(0,0,0,0.1),
--6px -6px 12px rgba(255,255,255,0.9);
 }
 
-.btn:hover{
-transform:translateY(-3px);
-box-shadow:
-inset 3px 3px 8px rgba(0,0,0,0.08),
-inset -3px -3px 8px rgba(255,255,255,0.9);
-}
 .backBtn{
 position:absolute;
-top:15px;
-left:15px;
-
-padding:6px 12px;
-font-size:13px;
-
+top:10px;
+left:10px;
+padding:4px 10px;
+font-size:12px;
 border-radius:20px;
 border:none;
-
-background:linear-gradient(145deg,#f3ede5,#e6dfd5);
-color:#5c5248;
-
+opacity:0.85;
 cursor:pointer;
-
-box-shadow:
-4px 4px 10px rgba(0,0,0,0.1),
--4px -4px 10px rgba(255,255,255,0.9);
-}
-.page{
-display:none;
-padding:30px;
 }
 
-.active{
-display:block;
-}
+.page{display:none;padding:30px;}
+.active{display:block;}
 
 .card{
-background:linear-gradient(145deg,#ffffff,#f3efe9);
-padding:35px;
-border-radius:25px;
+background:#fff;
+padding:30px;
+border-radius:20px;
 margin:20px auto;
-max-width:520px;
-
-border:1px solid #e5dfd6;
-
-box-shadow:
-8px 8px 20px rgba(0,0,0,0.08),
--8px -8px 20px rgba(255,255,255,0.9);
-
-transition:0.3s;
-position:relative;
+max-width:500px;
 }
 
-.card:hover{
-transform:translateY(-5px);
-box-shadow:
-0 30px 70px rgba(0,0,0,0.8),
-0 0 40px rgba(255,122,200,0.5);
-}
-.card::before{
-content:"";
-position:absolute;
-top:0;
-left:0;
-width:100%;
-height:100%;
-border-radius:25px;
-
-background:
-linear-gradient(120deg,transparent 40%,rgba(255,255,255,0.4),transparent 60%);
-
-opacity:0.3;
-pointer-events:none;
-}
 input,select,textarea{
 width:85%;
 padding:14px;
 margin:10px;
-
 border-radius:14px;
-border:1px solid #e5dfd6;
-
-background:#f9f7f4;
-color:#555;
-
-font-size:15px;
-
-box-shadow:
-inset 3px 3px 6px rgba(0,0,0,0.05),
-inset -3px -3px 6px rgba(255,255,255,0.8);
+border:1px solid #ddd;
 }
 
-input:focus,
-textarea:focus,
-select:focus{
-outline:none;
-box-shadow:
-0 0 10px #ff7ac8,
-inset 0 0 10px rgba(0,0,0,0.6);
-}
-.colors{
-display:flex;
-justify-content:center;
-flex-wrap:wrap;
-}
+.colors{display:flex;flex-wrap:wrap;justify-content:center;}
 
 .color{
-width:40px;
-height:40px;
-margin:6px;
-border-radius:10px;
-cursor:pointer;
-border:2px solid white;
+width:40px;height:40px;margin:6px;
+border-radius:10px;cursor:pointer;
+border:2px solid #fff;
 }
 
-.order{
-background:linear-gradient(145deg,#ffffff,#f3efe9);
-padding:20px;
-border-radius:20px;
-margin:15px auto;
-max-width:500px;
-
-border:1px solid #e5dfd6;
-
-box-shadow:
-6px 6px 15px rgba(0,0,0,0.08),
--6px -6px 15px rgba(255,255,255,0.9);
-
-transition:0.3s;
-}
-#admin{
-color:#555;
-}
-.order:hover{
-transform:translateY(-3px);
-box-shadow:
-inset 3px 3px 8px rgba(0,0,0,0.05),
-inset -3px -3px 8px rgba(255,255,255,0.9);
+.color.selected{
+box-shadow:0 0 15px #ff7ac8, 0 0 30px #ff7ac8;
+transform:scale(1.2);
 }
 
-.preview img,video{
-max-width:200px;
-margin-top:10px;
-border-radius:10px;
+.gallery{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+}
+
+.gallery img{
+width:90px;
+height:90px;
+margin:8px;
+border-radius:12px;
+object-fit:cover;
+display:inline-block;
 }
 
 #loading{
@@ -222,17 +118,15 @@ z-index:999;
 justify-content:center;
 align-items:center;
 flex-direction:column;
-font-size:22px;
+color:#fff;
 }
 
 .loader{
-width:60px;
-height:60px;
+width:60px;height:60px;
 border:6px solid #ffffff33;
 border-top:6px solid #ff7ac8;
 border-radius:50%;
 animation:spin 1s linear infinite;
-margin-bottom:20px;
 }
 
 @keyframes spin{
@@ -240,198 +134,88 @@ margin-bottom:20px;
 100%{transform:rotate(360deg);}
 }
 
-.gallery{
-display:flex;
-justify-content:center;
-flex-wrap:wrap;
-}
-
-.gallery img{
-width:110px;
-height:110px;
-object-fit:cover;
-margin:10px;
-border-radius:14px;
-
-border:2px solid rgba(255,255,255,0.1);
-
-transition:0.25s;
-}
-
-.gallery img:hover{
-transform:scale(1.1) rotate(2deg);
-
-box-shadow:
-0 15px 35px rgba(255,122,200,0.6);
-}
-.frame{
-position:fixed;
-top:10px;
-left:10px;
-right:10px;
-bottom:10px;
-border:2px solid rgba(255,255,255,0.15);
-border-radius:30px;
-pointer-events:none;
-box-shadow:
-0 0 40px rgba(255,122,200,0.3),
-inset 0 0 30px rgba(255,255,255,0.05);
-}
- /* 별 반짝이 */
-.stars{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-pointer-events:none;
-z-index:-1;
-}
-
-.star{
-position:absolute;
-width:4px;
-height:4px;
-background:#ff7ac8;
-border-radius:50%;
-box-shadow:0 0 10px #ff7ac8,0 0 20px #ff7ac8;
-animation:twinkle 2s infinite alternate;
-}
-
-@keyframes twinkle{
-0%{opacity:0.2;transform:scale(0.8)}
-100%{opacity:1;transform:scale(1.4)}
-}
 </style>
 </head>
 
 <body>
-<div class="frame"></div>
+
 <div id="loading">
 <div class="loader"></div>
-잠시만 기다려주세요...
+업로드중...
 </div>
 
 <div id="main" class="page active">
+<h1 class="title">✨ 프로필 제작소 ✨</h1>
 
-<h1 class="title">프로필 제작</h1>
-
-<button class="btn" onclick="page('make')">
-프로필 만들러가기
-</button>
-
-<button class="btn" onclick="page('price')">
-가격 및 모음집
-</button>
-
-<button class="btn" onclick="adminLogin()">
-관리자
-</button>
-
+<button class="btn" onclick="page('make')">프로필 만들기</button>
+<button class="btn" onclick="page('price')">가격 & 모음집</button>
+<button class="btn" onclick="adminLogin()">관리자</button>
 </div>
-<div id="price" class="page">
 
+<div id="price" class="page">
 <div class="card">
 
 <h2>가격 안내</h2>
-
 <p>
 선불 : 미네랄 3000만<br>
-후불 : 미네랄 4000만<br><br>
-
-입금 방법<br>
-창고 입금<br>
-미네랄 선물 (500x6일)<br>
-와토 전달
+후불 : 미네랄 4000만
 </p>
 
 <h2>프로필 모음집</h2>
 
 <div class="gallery">
-
 <img src="https://i.imgur.com/noDm1CK.gif">
 <img src="https://i.imgur.com/n8yic2W.gif">
 <img src="https://i.imgur.com/lfcnC8z.gif">
+</div>
+
+<button class="backBtn" onclick="page('main')">←</button>
 
 </div>
-<button class="btn" onclick="page('main')">
-뒤로가기
-</button>
+</div>
 
-</div>
-</div>
 <div id="make" class="page">
-
 <div class="card">
 
 <h2>프로필 신청</h2>
 
 <input id="nick" placeholder="닉네임">
 
-<button class="btn" onclick="toggleColor()">
-프로필 색상 선택
-</button>
+<button class="btn" onclick="toggleColor()">색상 선택</button>
 
 <div id="colorBox" style="display:none">
-
 <div class="colors">
 
-<div class="color" style="background:#ff9aa2" onclick="setColor('파스텔 빨강',this)"></div>
-<div class="color" style="background:#ffb347" onclick="setColor('파스텔 주황',this)"></div>
-<div class="color" style="background:#fff4a3" onclick="setColor('파스텔 노랑',this)"></div>
-<div class="color" style="background:#b5ead7" onclick="setColor('파스텔 초록',this)"></div>
-<div class="color" style="background:#a0e7e5" onclick="setColor('파스텔 하늘',this)"></div>
-<div class="color" style="background:#a0c4ff" onclick="setColor('파스텔 파랑',this)"></div>
-<div class="color" style="background:#cdb4db" onclick="setColor('파스텔 보라',this)"></div>
-<div class="color" style="background:#ffc6ff" onclick="setColor('파스텔 분홍',this)"></div>
-<div class="color" style="background:#000" onclick="setColor('검정',this)"></div>
+<div class="color" style="background:#ff9aa2" onclick="setColor('빨강',this)"></div>
+<div class="color" style="background:#a0c4ff" onclick="setColor('파랑',this)"></div>
+<div class="color" style="background:#ffc6ff" onclick="setColor('핑크',this)"></div>
 
 </div>
 </div>
 
 선택 색상 : <span id="colorText">없음</span>
 
-<br>
-
 <input type="file" id="file">
+<p id="warn" style="color:red;"></p>
 
 <select id="font">
 <option>둥글게</option>
-<option>날렵하게</option>
 <option>얇게</option>
-<option>두껍게</option>
-</select>
-
-<select id="type">
-<option>숲 프로필</option>
-<option>와고용 프로필</option>
 </select>
 
 <textarea id="request" placeholder="요청사항"></textarea>
 
-<button class="btn" onclick="submitOrder()">
-신청하기
-</button>
+<button class="btn" onclick="submitOrder()">신청하기</button>
 
-<button class="backBtn" onclick="page('main')">
-←
-</button>
+<button class="backBtn" onclick="page('main')">←</button>
 
 </div>
 </div>
 
 <div id="admin" class="page">
-
-<h2 class="title">주문 관리</h2>
-
-<p id="orderCount"></p>
-
+<h2>관리자</h2>
 <div id="orders"></div>
-
-<button class="btn" onclick="page('main')">
-뒤로가기
-</button>
-
+<button onclick="page('main')">뒤로가기</button>
 </div>
 
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
@@ -442,198 +226,90 @@ animation:twinkle 2s infinite alternate;
 const firebaseConfig = {
  apiKey: "AIzaSyDmu0IcPOpT3t4lCTm4lJSOfputYD1Qrl4",
  authDomain: "profile-order.firebaseapp.com",
- projectId: "profile-order",
- storageBucket: "profile-order.firebasestorage.app",
- messagingSenderId: "809148281864",
- appId: "1:809148281864:web:5bcbe9ffb4fdd544184dbd"
+ projectId: "profile-order"
 };
 
 firebase.initializeApp(firebaseConfig);
-
 const db = firebase.firestore();
 
 let color="없음"
 
 function page(p){
-
 document.querySelectorAll(".page").forEach(e=>e.classList.remove("active"))
 document.getElementById(p).classList.add("active")
-
 if(p==="admin") loadOrders()
-
 }
 
 function toggleColor(){
-
 let b=document.getElementById("colorBox")
 b.style.display=b.style.display==="none"?"block":"none"
-
 }
 
 function setColor(c,el){
-
 color=c
 document.getElementById("colorText").innerText=c
-
-document.querySelectorAll(".color").forEach(e=>{
-e.classList.remove("selected")
-})
-
+document.querySelectorAll(".color").forEach(e=>e.classList.remove("selected"))
 el.classList.add("selected")
-
 }
 
 async function submitOrder(){
 
 let nick=document.getElementById("nick").value
 let file=document.getElementById("file").files[0]
+let warn=document.getElementById("warn")
+
+warn.innerText=""
 
 if(!nick){
-alert("닉네임 입력해주세요")
+warn.innerText="닉네임 입력해주세요"
 return
 }
 
 if(!file){
-alert("⚠️ 프로필 제작할 파일을 선택해야 합니다!")
-return
-}
-
-if(file.size > 50*1024*1024){
-alert("파일은 50MB 이하만 가능합니다")
-return
-}
-
-if(!file.type.startsWith("image") && !file.type.startsWith("video")){
-alert("이미지 또는 영상만 업로드 가능합니다")
+warn.innerText="파일 선택 필수!"
 return
 }
 
 document.getElementById("loading").style.display="flex"
 
-try{
-
 let formData=new FormData()
 formData.append("file",file)
 formData.append("upload_preset","oiactlgf")
 
-let res=await fetch("https://api.cloudinary.com/v1_1/dni642dal/upload",{
-method:"POST",
-body:formData
-})
-
+let res=await fetch("https://api.cloudinary.com/v1_1/dni642dal/upload",{method:"POST",body:formData})
 let data=await res.json()
 
-if(!data.secure_url){
-throw new Error("업로드 실패")
-}
-
-let fileUrl=data.secure_url
-
 await db.collection("orders").add({
-nick:nick,
-color:color,
-font:document.getElementById("font").value,
-type:document.getElementById("type").value,
-request:document.getElementById("request").value,
-file:fileUrl,
-time:new Date().toLocaleString()
+nick,color,file:data.secure_url
 })
 
-alert("신청 완료!")
+alert("완료!")
 page("main")
-
-}catch(err){
-
-console.error(err)
-alert("업로드 실패했습니다. 다시 시도해주세요.")
-
-}
-
 document.getElementById("loading").style.display="none"
-
 }
 
-function adminLogin(){
+// 🔥 GIF 로고
+document.querySelectorAll(".gallery img").forEach(img=>{
+let wrap=document.createElement("div")
+wrap.style.position="relative"
+wrap.style.display="inline-block"
+img.parentNode.insertBefore(wrap,img)
+wrap.appendChild(img)
 
-let pw=prompt("관리자 비밀번호")
+let logo=document.createElement("div")
+logo.innerText="뿔링뿔링"
+logo.style.position="absolute"
+logo.style.bottom="5px"
+logo.style.right="5px"
+logo.style.fontSize="10px"
+logo.style.background="rgba(0,0,0,0.5)"
+logo.style.color="#fff"
+logo.style.padding="2px 6px"
+logo.style.borderRadius="10px"
 
-if(pw==="0915") page("admin")
-else alert("비밀번호 틀림")
-
-}
-
-async function loadOrders(){
-
-let snapshot=await db.collection("orders").get()
-
-let html=""
-
-document.getElementById("orderCount").innerText="현재 주문 : "+snapshot.size+"개"
-
-snapshot.forEach(doc=>{
-
-let o=doc.data()
-
-let preview=""
-
-if(o.file && (o.file.includes(".mp4") || o.file.includes(".webm") || o.file.includes(".mov"))){
-preview=`<video src="${o.file}" controls></video>`
-}else{
-preview=`<img src="${o.file}">`
-}
-
-html+=`
-
-<div class="order">
-
-닉네임 : ${o.nick}<br>
-색상 : ${o.color}<br>
-글씨체 : ${o.font}<br>
-프로필 : ${o.type}<br>
-요청 : ${o.request}<br>
-
-<div class="preview">
-${preview}
-</div>
-
-<button class="btn" onclick="completeOrder('${doc.id}')">
-완료
-</button>
-
-</div>
-
-`
-
+wrap.appendChild(logo)
 })
 
-document.getElementById("orders").innerHTML=html
-
-}
-
-async function completeOrder(id){
-
-await db.collection("orders").doc(id).delete()
-
-loadOrders()
-
-}
-
-const starContainer=document.createElement("div")
-starContainer.className="stars"
-document.body.appendChild(starContainer)
-
-for(let i=0;i<60;i++){
-
-let star=document.createElement("div")
-star.className="star"
-
-star.style.left=Math.random()*100+"%"
-star.style.top=Math.random()*100+"%"
-star.style.animationDelay=Math.random()*2+"s"
-
-starContainer.appendChild(star)
-
-}
 </script>
 
 </body>
