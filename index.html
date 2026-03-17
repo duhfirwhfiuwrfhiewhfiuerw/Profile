@@ -32,15 +32,15 @@ background-blend-mode:overlay;
 overflow-x:hidden;
 }
 .title{
-font-size:42px;
+font-size:40px;
 margin-top:40px;
 
-color:#dba3b0;
+background:linear-gradient(135deg,#ffd6e7,#e7c6ff);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
 
-text-shadow:
-0 0 10px rgba(255,182,193,0.6);
-
-letter-spacing:2px;
+letter-spacing:3px;
+font-weight:900;
 }
 
 .btn{
@@ -428,10 +428,7 @@ animation:twinkle 2s infinite alternate;
 
 <div id="orders"></div>
 
-<button class="btn" onclick="page('main')">
-뒤로가기
-</button>
-
+<button class="backBtn" onclick="page('main')">←</button>
 </div>
 
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
@@ -599,7 +596,7 @@ ${preview}
 <button class="btn" onclick="completeOrder('${doc.id}')">
 완료
 </button>
-
+<button class="backBtn" onclick="page('main')">←</button>
 </div>
 
 `
