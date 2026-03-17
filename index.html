@@ -247,22 +247,25 @@ flex-wrap:wrap;
 }
 
 .gallery img{
-width:110px;
-height:110px;
+width:100px;
+height:100px;
 object-fit:cover;
 margin:10px;
-border-radius:14px;
 
-border:2px solid rgba(255,255,255,0.1);
-
-transition:0.25s;
+border-radius:50%;
+position:relative;
 }
 
-.gallery img:hover{
-transform:scale(1.1) rotate(2deg);
-
-box-shadow:
-0 15px 35px rgba(255,122,200,0.6);
+.gallery img::after{
+content:"뿔링뿔링";
+position:absolute;
+bottom:5px;
+right:5px;
+font-size:10px;
+color:white;
+background:rgba(0,0,0,0.5);
+padding:2px 6px;
+border-radius:10px;
 }
 .frame{
 position:fixed;
@@ -277,31 +280,7 @@ box-shadow:
 0 0 40px rgba(255,122,200,0.3),
 inset 0 0 30px rgba(255,255,255,0.05);
 }
- /* 별 반짝이 */
-.stars{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-pointer-events:none;
-z-index:-1;
-}
-
-.star{
-position:absolute;
-width:4px;
-height:4px;
-background:#ff7ac8;
-border-radius:50%;
-box-shadow:0 0 10px #ff7ac8,0 0 20px #ff7ac8;
-animation:twinkle 2s infinite alternate;
-}
-
-@keyframes twinkle{
-0%{opacity:0.2;transform:scale(0.8)}
-100%{opacity:1;transform:scale(1.4)}
-}
+ 
 </style>
 </head>
 
@@ -412,7 +391,7 @@ animation:twinkle 2s infinite alternate;
 <button class="btn" onclick="submitOrder()">
 신청하기
 </button>
-
+<p id="warn" style="color:red; font-size:14px;"></p>
 <button class="backBtn" onclick="page('main')">
 ←
 </button>
@@ -482,16 +461,16 @@ el.classList.add("selected")
 
 async function submitOrder(){
 
-let nick=document.getElementById("nick").value
-let file=document.getElementById("file").files[0]
+let warn=document.getElementById("warn")
+warn.innerText=""
 
 if(!nick){
-alert("닉네임 입력해주세요")
+warn.innerText="닉네임을 입력해주세요"
 return
 }
 
 if(!file){
-alert("⚠️ 프로필 제작할 파일을 선택해야 합니다!")
+warn.innerText="파일을 선택해주세요"
 return
 }
 
@@ -615,22 +594,27 @@ loadOrders()
 
 }
 
-const starContainer=document.createElement("div")
-starContainer.className="stars"
-document.body.appendChild(starContainer)
+ document.querySelectorAll(".gallery img").forEach(img=>{
+let wrap=document.createElement("div")
+wrap.style.position="relative"
+wrap.style.display="inline-block"
 
-for(let i=0;i<60;i++){
+img.parentNode.insertBefore(wrap,img)
+wrap.appendChild(img)
 
-let star=document.createElement("div")
-star.className="star"
+let logo=document.createElement("div")
+logo.innerText="뿔링뿔링"
+logo.style.position="absolute"
+logo.style.bottom="5px"
+logo.style.right="5px"
+logo.style.fontSize="10px"
+logo.style.color="#fff"
+logo.style.background="rgba(0,0,0,0.5)"
+logo.style.padding="2px 6px"
+logo.style.borderRadius="10px"
 
-star.style.left=Math.random()*100+"%"
-star.style.top=Math.random()*100+"%"
-star.style.animationDelay=Math.random()*2+"s"
-
-starContainer.appendChild(star)
-
-}
+wrap.appendChild(logo)
+})
 </script>
 
 </body>
