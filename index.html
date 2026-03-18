@@ -134,21 +134,22 @@ box-shadow:
 
 .backBtn:active{
 transform:scale(0.95);
-}
-.backBtn svg{
-width:18px;
-height:18px;
+}.backBtn svg{
+width:20px;
+height:20px;
 
 stroke:#6b5c55;
-stroke-width:3.5;   /* 🔥 두께 핵심 */
+stroke-width:3.2;  /* 🔥 너무 두꺼우면 둔해보여서 살짝 조정 */
 fill:none;
 
 stroke-linecap:round;
 stroke-linejoin:round;
+
+transition:0.2s;
 }
 .backBtn:hover svg{
 stroke:#ff7ac8;
-transform:scale(1.1);
+transform:translateX(-2px) scale(1.1);
 }
 .adminBtn{
 position:fixed;
@@ -452,7 +453,7 @@ border:2px solid #fff;
 <div class="card">
 <button class="backBtn" onclick="page('main')">
 <svg viewBox="0 0 24 24">
-<path d="M15 6L9 12L15 18" />
+<path d="M19 12H6M12 5L5 12L12 19"/>
 </svg>
 </button>
 <h2>가격 안내</h2>
@@ -533,7 +534,7 @@ border:2px solid #fff;
 
 <button class="backBtn" onclick="page('main')">
 <svg viewBox="0 0 24 24">
-<path d="M15 6L9 12L15 18" />
+<path d="M19 12H6M12 5L5 12L12 19"/>
 </svg>
 </button>
 
@@ -541,7 +542,11 @@ border:2px solid #fff;
 </div>
 
 <div id="admin" class="page">
-<button class="backBtn" onclick="page('main')">←</button>
+<button class="backBtn" onclick="page('main')">
+<svg viewBox="0 0 24 24">
+<path d="M19 12H6M12 5L5 12L12 19"/>
+</svg>
+</button>
 <h2 class="title">주문 관리</h2>
 
 <p id="orderCount"></p>
