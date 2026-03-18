@@ -423,6 +423,19 @@ box-shadow:
 0 0 40px rgba(255,122,200,0.7);
 border:2px solid #fff;
 }
+#errorMsg{
+color:#ff4d6d;
+font-size:14px;
+margin-top:10px;
+font-weight:bold;
+text-align:center;
+
+opacity:0;
+transition:0.3s;
+}
+#errorMsg.show{
+opacity:1;
+}
 </style>
 </head>
 
@@ -531,7 +544,7 @@ border:2px solid #fff;
 <button class="btn" onclick="submitOrder()">
 신청하기
 </button>
-
+<div id="errorMsg"></div>
 <button class="backBtn" onclick="page('main')">
 <svg viewBox="0 0 24 24">
 <path d="M19 12H6M12 5L5 12L12 19"/>
@@ -608,14 +621,20 @@ async function submitOrder(){
 
 let nick=document.getElementById("nick").value
 let file=document.getElementById("file").files[0]
+let error=document.getElementById("errorMsg")
+
+error.innerText=""
+error.classList.remove("show")
 
 if(!nick){
-alert("닉네임 입력해주세요")
+error.innerText="⚠️ 닉네임을 입력해주세요"
+error.classList.add("show")
 return
 }
 
 if(!file){
-alert("⚠️ 프로필 제작할 파일을 선택해야 합니다!")
+error.innerText="⚠️ 파일을 선택해야 합니다"
+error.classList.add("show")
 return
 }
 
@@ -661,6 +680,8 @@ time:new Date().toLocaleString()
 })
 
 alert("신청 완료!")
+error.innerText=""
+error.classList.remove("show")
 page("main")
 
 }catch(err){
