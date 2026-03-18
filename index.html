@@ -223,7 +223,16 @@ transition:0.5s;
 .adminBtn:hover::before{
 left:130%;
 }
-    
+
+.btn.error{
+box-shadow:
+0 0 10px #ff4d6d,
+0 0 25px #ff4d6d,
+0 0 40px rgba(255,77,109,0.7),
+inset 0 0 10px rgba(255,255,255,0.6);
+
+animation:shake 0.3s;
+}
 .page{
 display:none;
 padding:30px;
@@ -436,6 +445,13 @@ transition:0.3s;
 #errorMsg.show{
 opacity:1;
 }
+@keyframes shake{
+0%{transform:translateX(0);}
+25%{transform:translateX(-4px);}
+50%{transform:translateX(4px);}
+75%{transform:translateX(-4px);}
+100%{transform:translateX(0);}
+}
 </style>
 </head>
 
@@ -622,22 +638,28 @@ async function submitOrder(){
 let nick=document.getElementById("nick").value
 let file=document.getElementById("file").files[0]
 let error=document.getElementById("errorMsg")
+let btn=document.querySelector("#make .btn")
+btn.classList.remove("error")
 
+// 🔴 에러 초기화
 error.innerText=""
 error.classList.remove("show")
-
 if(!nick){
 error.innerText="⚠️ 닉네임을 입력해주세요"
 error.classList.add("show")
+btn.classList.add("error")  // 🔥 추가
+
 return
 }
 
 if(!file){
 error.innerText="⚠️ 파일을 선택해야 합니다"
 error.classList.add("show")
+
+btn.classList.add("error")  // 🔥 추가
+
 return
 }
-
 if(file.size > 50*1024*1024){
 alert("파일은 50MB 이하만 가능합니다")
 return
@@ -682,6 +704,7 @@ time:new Date().toLocaleString()
 alert("신청 완료!")
 error.innerText=""
 error.classList.remove("show")
+btn.classList.remove("error") 
 page("main")
 
 }catch(err){
