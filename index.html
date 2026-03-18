@@ -439,11 +439,11 @@ margin-top:10px;
 font-weight:bold;
 text-align:center;
 
-opacity:0;
-transition:0.3s;
+display:none;   /* 🔥 변경 */
 }
+
 #errorMsg.show{
-opacity:1;
+display:block;  /* 🔥 변경 */
 }
 @keyframes shake{
 0%{transform:translateX(0);}
