@@ -135,6 +135,21 @@ box-shadow:
 .backBtn:active{
 transform:scale(0.95);
 }
+.backBtn svg{
+width:18px;
+height:18px;
+
+stroke:#6b5c55;
+stroke-width:3.5;   /* 🔥 두께 핵심 */
+fill:none;
+
+stroke-linecap:round;
+stroke-linejoin:round;
+}
+.backBtn:hover svg{
+stroke:#ff7ac8;
+transform:scale(1.1);
+}
 .adminBtn{
 position:fixed;
 top:20px;
@@ -435,7 +450,11 @@ border:2px solid #fff;
 <div id="price" class="page">
 
 <div class="card">
-<button class="backBtn" onclick="page('main')">←</button>
+<button class="backBtn" onclick="page('main')">
+<svg viewBox="0 0 24 24">
+<path d="M15 6L9 12L15 18" />
+</svg>
+</button>
 <h2>가격 안내</h2>
 
 <p>
@@ -513,7 +532,9 @@ border:2px solid #fff;
 </button>
 
 <button class="backBtn" onclick="page('main')">
-←
+<svg viewBox="0 0 24 24">
+<path d="M15 6L9 12L15 18" />
+</svg>
 </button>
 
 </div>
