@@ -95,6 +95,37 @@ box-shadow:
 
 z-index:10;
 }
+.adminBtn{
+position:fixed;
+top:20px;
+right:20px;
+
+width:50px;
+height:50px;
+
+border-radius:50%;
+border:none;
+
+font-size:20px;
+
+background:linear-gradient(145deg,#f5eee6,#e6dbcd);
+color:#6b5c55;
+
+cursor:pointer;
+
+box-shadow:
+4px 4px 10px rgba(0,0,0,0.1),
+-4px -4px 10px rgba(255,255,255,0.9);
+
+z-index:100;
+transition:0.3s;
+}
+
+.adminBtn:hover{
+transform:scale(1.1);
+box-shadow:
+0 0 15px rgba(255,122,200,0.5);
+}
 .page{
 display:none;
 padding:30px;
@@ -182,18 +213,25 @@ border:2px solid white;
 
 .order{
 background:linear-gradient(145deg,#ffffff,#f3efe9);
-padding:20px;
+padding:15px;   /* 🔥 줄임 */
 border-radius:20px;
-margin:15px auto;
-max-width:500px;
+margin:10px auto;
+max-width:420px;   /* 🔥 줄임 */
 
 border:1px solid #e5dfd6;
 
 box-shadow:
-6px 6px 15px rgba(0,0,0,0.08),
--6px -6px 15px rgba(255,255,255,0.9);
+4px 4px 10px rgba(0,0,0,0.08),
+-4px -4px 10px rgba(255,255,255,0.9);
 
 transition:0.3s;
+font-size:14px; /* 🔥 글씨 살짝 줄임 */
+}
+.order .btn{
+width:160px;
+padding:10px;
+font-size:14px;
+margin-top:10px;
 }
 #admin{
 color:#555;
@@ -308,11 +346,7 @@ border:2px solid #fff;
 <button class="btn" onclick="page('price')">
 가격 및 모음집
 </button>
-
-<button class="btn" onclick="adminLogin()">
-관리자
-</button>
-
+<button class="adminBtn" onclick="adminLogin()">🔑</button>
 </div>
 <div id="price" class="page">
 
