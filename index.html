@@ -638,7 +638,7 @@ async function submitOrder(){
 let nick=document.getElementById("nick").value
 let file=document.getElementById("file").files[0]
 let error=document.getElementById("errorMsg")
-let btn=document.querySelector("#make .btn:last-of-type")
+let btn=document.getElementById("submitBtn")
 btn.classList.remove("error")
 
 // 🔴 에러 초기화
@@ -658,6 +658,12 @@ error.classList.add("show")
 
 btn.classList.add("error")  // 🔥 추가
 
+return
+}
+if(color==="없음"){
+error.innerText="⚠️ 색상을 선택해주세요"
+error.classList.add("show")
+btn.classList.add("error")
 return
 }
 if(file.size > 50*1024*1024){
