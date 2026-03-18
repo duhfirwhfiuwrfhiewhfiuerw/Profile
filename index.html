@@ -638,7 +638,7 @@ async function submitOrder(){
 let nick=document.getElementById("nick").value
 let file=document.getElementById("file").files[0]
 let error=document.getElementById("errorMsg")
-let btn=document.querySelector("#make .btn")
+let btn=document.querySelector("#make .btn:last-of-type")
 btn.classList.remove("error")
 
 // 🔴 에러 초기화
